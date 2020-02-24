@@ -24,9 +24,9 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.62,0.52,0.76,0.60]#主界面判断区域                        》
-L_SUPPORT_IMAGE_BOX = [0.02,0.30,0.18,0.37]#后勤完成界面判断区域                 》
-DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.40]#模拟器桌面判断区域                        》
+MAIN_MENU_IMAGE_BOX = [0.62,0.52,0.76,0.60]#主界面判断区域                      
+L_SUPPORT_IMAGE_BOX = [0.02,0.30,0.18,0.37]#后勤完成界面判断区域         
+DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.40]#模拟器桌面判断区域         
 
 #=================点击拖动区域=================#
 #收后勤支援
@@ -35,8 +35,8 @@ L_SUPPORT_STEP2_CLICK_BOX = [0.53,0.62,0.62,0.67]#再次派出
 
 #启动游戏
 START_GAME_STEP1_CLICK_BOX = [0.14,0.23,0.18,0.28]#点击图标启动
-START_GAME_STEP2_CLICK_BOX = [0.50,0.70,0.50,0.70]#点击一次
-START_GAME_STEP3_CLICK_BOX = [0.50,0.75,0.50,0.75]#点击开始
+START_GAME_STEP2_CLICK_BOX = [0.50,0.70,0.50,0.70]#点击开始
+START_GAME_STEP3_CLICK_BOX = [0.50,0.75,0.50,0.75]#点击登录
  
 #关闭游戏
 CLOSE_GAME_CLICK_BOX = [0.52,0.03,0.53,0.04]
@@ -216,7 +216,7 @@ if __name__ == "__main__":
             failCount = 0
             startGame()
             continue
-        else:
+        else:#有的时候卡了或者是怎么样了，直接关了重启
             print(">>> ",datetime.datetime.now()," 当前状态未知")
             failCount += 1
             if failCount == 3:
@@ -224,7 +224,7 @@ if __name__ == "__main__":
             else:
                 time.sleep(10)
             continue
-        hideWindow()
+        hideWindow()#隐藏窗口，这样你就可以同时做其他事了
         wait(300,360)
                 
             
