@@ -437,7 +437,7 @@ if __name__ == "__main__":
     failCount = 0
 
     while True:
-        if isInMap()：
+        if isInMap():
             print("STATE：现在在0-2地图")
             failCount = 0
             changeForce()
