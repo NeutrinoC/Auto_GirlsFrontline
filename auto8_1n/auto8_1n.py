@@ -527,6 +527,7 @@ if __name__ == "__main__":
             if isGotoPowerup():
                 gotoPowerup()
                 backToMainMenu()
+                firstCombat = True
                 continue
             if checkCount >= 50:#过了10s还是卡着，启动失败，直接关闭窗口重启
                 print("ERROR：作战启动超时！")
