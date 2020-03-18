@@ -34,12 +34,17 @@ CHOOSE_0_2_IMAGE_BOX = [0.50,0.50,0.60,0.60]#0-2界面判断区域
 MAP_0_2_IMAGE_BOX = [0.47,0.45,0.54,0.54]#0-2地图判断区域                             
 PLAN_FINISH_IMAGE_BOX = [0.80,0.78,0.98,0.87]#计划完成判断区域                              
 GOTO_POWERUP_IMAGE_BOX = [0.54,0.60,0.68,0.68]#提醒强化判断区域               
-NAVIGATE_IMAGE_BOX = [0.18,0.10,0.22,0.17]#导航条判断区域                                            
+NAVIGATE_IMAGE_BOX = [0.18,0.10,0.22,0.17]#导航条判断区域       
+DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.40]#模拟器桌面判断区域         
+COMBAT_PAUSE_IMAGE_BOX = [0.45,0.67,0.55,0.73]#战斗终止提示判断区域            
+RETURN_COMBAT_IMAGE_BOX = [0.75,0.65,0.90,0.72]#回到作战界面判断区域    
 
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
 COMBAT_CLICK_BOX = [0.62,0.52,0.76,0.60]#在主菜单点击战斗
+BACK_TO_COMBAT_CLICK_BOX = [0.75,0.65,0.90,0.72]#主菜单回到战斗
+BACK_TO_COMBAT_AFTER_CLICK_BOX = [0.49,0.08,0.51,0.12]#战斗结束后乱点
 
 #从作战选择界面进入0-2界面
 COMBAT_MISSION_CLICK_BOX = [0.07,0.3,0.17,0.38]#点击作战任务
@@ -66,7 +71,7 @@ CHANGE_FORCE_STEP4_CLICK_BOX = [0.12,0.12,0.14,0.15]#点击返回
 TEAM_SET_CLICK_BOX = [0.84,0.78,0.90,0.83]
 
 #16哥修复
-M16_REPAIR_INTERVAL = 5#16哥隔多少轮修一次
+M16_REPAIR_INTERVAL = 6   #16哥隔多少轮修一次
 REPAIR_STEP1_CLICK_BOX = [0.70,0.30,0.76,0.50]#点击m16 
 REPAIR_STEP2_CLICK_BOX = [0.66,0.63,0.72,0.68]#确定修复
 REPAIR_STEP3_CLICK_BOX = [0.81,0.78,0.91,0.83]#退出2队界面
@@ -77,7 +82,6 @@ START_COMBAT_CLICK_BOX = [0.82,0.78,0.95,0.85]#点击开始作战
 #补给打手
 SUPPLY_STEP1_CLICK_BOX = [0.82,0.68,0.92,0.74]#点击补给
 SUPPLY_STEP2_CLICK_BOX = [0.70,0.40,0.80,0.50]#取消选中
-
 
 #计划模式
 PLAN_MODE_CLICK_BOX = [0.05,0.73,0.10,0.76]#点击计划模式
@@ -120,7 +124,21 @@ NAVIGATE_MAIN_MENU_CLICK_BOX = [0.20,0.21,0.28,0.25]#返回基地
 L_SUPPORT_STEP1_CLICK_BOX = [0.50,0.50,0.60,0.60]#确认后勤完成
 L_SUPPORT_STEP2_CLICK_BOX = [0.53,0.62,0.62,0.67]#再次派出
 
- 
+#启动游戏
+START_GAME_STEP1_CLICK_BOX = [0.14,0.23,0.18,0.28]#点击图标启动
+START_GAME_STEP2_CLICK_BOX = [0.50,0.70,0.50,0.70]#点击一次
+START_GAME_STEP3_CLICK_BOX = [0.50,0.75,0.50,0.75]#点击开始 
+
+#重启作战
+RESTART_STEP1_CLICK_BOX = [0.2,0.09,0.25,0.15]#点击终止作战
+RESTART_STEP2_CLICK_BOX = [0.36,0.62,0.44,0.65]#点击重新作战
+
+#关闭游戏
+CLOSE_GAME_CLICK_BOX = [0.52,0.03,0.53,0.04]
+
+#关闭作战断开提醒
+CLOSE_TIP_CLICK_BOX = [0.45,0.67,0.55,0.73]
+
 #=============================================#
 #                                             #
 #                 基本功能函数                 #
@@ -143,15 +161,19 @@ def wait(minTime,maxTime):
     time.sleep(waitTime)
 
 
-#获取模拟器窗口位置数据
+#获取模拟器窗口数据
 def getWindowData():
-    windowName = "少女前线 - MuMu模拟器" #如果使用其他模拟器就需要改这里
+    windowName = "少女前线 - MuMu模拟器"
+    windowNameDesktop = "MuMu模拟器"
     hwnd = win32gui.FindWindow(None,windowName)#根据窗口名称找到窗口句柄
-    if hwnd == 0:
+    hwnd_desktop = win32gui.FindWindow(None,windowNameDesktop)
+    if hwnd == 0 and hwnd_desktop == 0:
         print("未找到窗口界面,程序自动退出！")
         exit(0)
-    else:
-        left,top,right,bottom = win32gui.GetWindowRect(hwnd)#获取窗口的位置（屏幕左上角为[0,0]）
+    elif hwnd != 0:
+        left,top,right,bottom = win32gui.GetWindowRect(hwnd)#获取窗口的位置数据
+    elif hwnd_desktop != 0:
+        left,top,right,bottom = win32gui.GetWindowRect(hwnd_desktop)#获取窗口的位置数据
     width  = right - left
     height = bottom - top
     return [left,top,right,bottom,width,height]
@@ -289,6 +311,20 @@ def isDesktop():
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
     return imageCompare(initImage,capImage)
 
+#判断是否是战斗中断提示界面
+def isCombatPause():
+    initImage = cv2.imread(IMAGE_PATH+"combat_pause.png")
+    capImage  = getImage(COMBAT_PAUSE_IMAGE_BOX)
+    capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
+    return imageCompare(initImage,capImage)
+
+#判断是否有回到作战界面
+def isReturnCombat():
+    initImage = cv2.imread(IMAGE_PATH+"return_combat.png")
+    capImage  = getImage(RETURN_COMBAT_IMAGE_BOX)
+    capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
+    return imageCompare(initImage,capImage)
+
 #当不知道在哪时，判断是否有导航栏，有就可以通过导航栏回到作战菜单
 def findNavigate():
     initImage = cv2.imread(IMAGE_PATH+"navigate.png")
@@ -300,6 +336,14 @@ def findNavigate():
 def mainMenuToCombatMenu():
     print("ACTION: 前往作战菜单")
     mouseClick(COMBAT_CLICK_BOX,5,6)  
+
+#从主菜单回到作战
+def mainMenuBackToCombat():
+    print("ACTION: 回到作战")
+    mouseClick(BACK_TO_COMBAT_CLICK_BOX,60,60)  
+    for i in range(10):
+        mouseClick(BACK_TO_COMBAT_AFTER_CLICK_BOX,0.6,0.7)    
+
     
 #从作战菜单进入0-2界面
 def combatMenuTo0_2():
@@ -367,7 +411,7 @@ def planMode():
     print("ACTION: 计划模式")
     mouseClick(PLAN_MODE_CLICK_BOX,1,2)
     mouseClick(COMMAND_CLICK_BOX,0.5,1)
-    mouseDrag(MAP_DRAG_BOX,1,2,360,0.005,1)
+    mouseDrag(MAP_DRAG_BOX,1,2,360,0.005,0.8)
     mouseClick(PLAN_POINT1_CLICK_BOX,0.2,0.25)
     mouseClick(PLAN_POINT2_CLICK_BOX,0.2,0.25)
     mouseClick(PLAN_POINT3_CLICK_BOX,0.2,0.25)
@@ -391,7 +435,7 @@ def gotoPowerup():
     mouseClick(GOTO_POWERUP_CLICK_BOX,4,5)
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_CHARACTER_CLICK_BOX,1,2)
-    for i in range(7):
+    for i in range(8):
         mouseClick(CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
         mouseClick(CHARACTER_2_CLICK_BOX,0.2,0.3)
         mouseClick(CHARACTER_3_CLICK_BOX,0.2,0.3)
@@ -406,21 +450,43 @@ def gotoPowerup():
 #跳转至主菜单
 def backToMainMenu():
     print("ACTION: 跳转至主菜单")
-    mouseClick(NAVIGATE_BAR_CLICK_BOX,2,3)
-    mouseClick(NAVIGATE_MAIN_MENU_CLICK_BOX,4,5)
+    mouseClick(NAVIGATE_BAR_CLICK_BOX,1,2)
+    mouseClick(NAVIGATE_MAIN_MENU_CLICK_BOX,5,6)
 
 #跳转至战斗菜单
 def backToCombatMenu():
     print("ACTION: 跳转至战斗菜单")
-    mouseClick(NAVIGATE_BAR_CLICK_BOX,2,3)
+    mouseClick(NAVIGATE_BAR_CLICK_BOX,1,2)
     mouseDrag(NAVIGATE_BAR_DRAG_BOX,3,1,150,0.01,1)
-    mouseClick(NAVIGATE_COMBAT_CLICK_BOX,4,5)
+    mouseClick(NAVIGATE_COMBAT_CLICK_BOX,5,6)
 
 #收后勤支援
 def takeLSupport():
     print("ACTION: 收派后勤")
     mouseClick(L_SUPPORT_STEP1_CLICK_BOX,2,3)
     mouseClick(L_SUPPORT_STEP2_CLICK_BOX,4,5)
+
+#启动游戏
+def startGame():
+    print("ACTION: 启动游戏")
+    mouseClick(START_GAME_STEP1_CLICK_BOX,30,30)
+    mouseClick(START_GAME_STEP2_CLICK_BOX,30,30)
+    mouseClick(START_GAME_STEP3_CLICK_BOX,30,30)
+
+#关闭作战断开提醒
+def closeTip():
+    mouseClick(CLOSE_TIP_CLICK_BOX,5,5)
+
+#重启作战
+def restartCombat():
+    print("ACTION: 重启作战")
+    mouseClick(RESTART_STEP1_CLICK_BOX,1,2)
+    mouseClick(RESTART_STEP2_CLICK_BOX,5,6)
+
+#关闭游戏
+def closeGame():
+    mouseClick(CLOSE_GAME_CLICK_BOX,5,5)
+
 
 #=============================================#
 #                                             #
@@ -435,6 +501,7 @@ if __name__ == "__main__":
     combatCount = 0
     firstCombat = True#在第一轮时会修复16哥并补给两队
     failCount = 0
+    combatPause = False
 
     while True:
         if isInMap():
@@ -456,6 +523,7 @@ if __name__ == "__main__":
                 time.sleep(1)
             if checkCount >= 300:
                 print("STATE：战斗超时！")
+                closeGame()
                 continue
             time.sleep(1)
             endAction()
@@ -477,6 +545,16 @@ if __name__ == "__main__":
             print("STATE： 战斗菜单")
             combatMenuTo0_2()
             failCount = 0
+        elif isCombatPause():
+            print("STATE： 战斗中断提醒界面")
+            failCount = 0
+            closeTip()
+        elif isReturnCombat():
+            print("STATE： 返回作战界面")
+            failCount = 0
+            mainMenuBackToCombat()
+            restartCombat()
+            firstCombat = True
         elif isMainMenu():
             print("STATE： 主菜单界面")
             mainMenuToCombatMenu()
@@ -485,6 +563,11 @@ if __name__ == "__main__":
             print("STATE： 后勤结束界面")
             takeLSupport()
             failCount = 0
+        elif isDesktop():
+            print("STATE：模拟器界面")
+            failCount = 0
+            startGame()
+            continue
         else:#既不是后勤结束界面也不是
             print("WARNING： 当前状态未知!")
             if findNavigate():
@@ -494,10 +577,10 @@ if __name__ == "__main__":
             else: 
                 failCount += 1
                 if failCount == 5:  
-                    print(">>> ",datetime.datetime.now()," 无法确定当前状态,程序退出！")
-                    exit(0)
+                    print(">>> ",datetime.datetime.now()," 无法确定当前状态,关闭重启！")
+                    closeGame()
                 else:
-                    time.sleep(10)
+                    time.sleep(5)
                 
             
             
