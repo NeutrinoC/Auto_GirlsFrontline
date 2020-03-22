@@ -27,101 +27,104 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.62,0.52,0.76,0.60]#主界面判断区域                       
-L_SUPPORT_IMAGE_BOX = [0.02,0.30,0.18,0.37]#后勤完成界面判断区域                
-COMBAT_MENU_IMAGE_BOX = [0.10,0.70,0.18,0.85]#战斗菜单界面判断区域          
-CHOOSE_8_1N_IMAGE_BOX = [0.50,0.35,0.60,0.45]#8-1n菜单界面判断区域                        
-MAP_8_1N_IMAGE_BOX = [0.47,0.45,0.53,0.55]#8-1n地图判断区域                             
-PLAN_FINISH_IMAGE_BOX = [0.80,0.78,0.97,0.87]#计划完成判断区域  
-COMBAT_START_IMAGE_BOX = [0.80,0.78,0.97,0.87]#开启作战判断区域                              
-GOTO_POWERUP_IMAGE_BOX = [0.58,0.62,0.65,0.66]#提醒强化判断区域               
-NAVIGATE_IMAGE_BOX = [0.18,0.10,0.22,0.17]#导航条判断区域       
-DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.40]#模拟器桌面判断区域         
-COMBAT_PAUSE_IMAGE_BOX = [0.45,0.67,0.55,0.73]#战斗终止提示判断区域            
-RETURN_COMBAT_IMAGE_BOX = [0.75,0.65,0.90,0.72]#回到作战界面判断区域    
+MAIN_MENU_IMAGE_BOX = [0.65,0.50,0.75,0.58]#主界面判断区域                       
+L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
+COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域          
+CHOOSE_8_1N_IMAGE_BOX = [0.50,0.32,0.60,0.40]#8-1n菜单界面判断区域                        
+MAP_8_1N_IMAGE_BOX = [0.82,0.80,0.95,0.88]#进入8-1n判断区域                             
+PLAN_FINISH_IMAGE_BOX = [0.80,0.82,0.97,0.88]#计划完成判断区域  
+COMBAT_START_IMAGE_BOX = [0.80,0.82,0.97,0.88]#开启作战判断区域                              
+GOTO_POWERUP_IMAGE_BOX = [0.58,0.60,0.65,0.65]#提醒强化判断区域               
+NAVIGATE_IMAGE_BOX = [0.15,0.10,0.20,0.15]#导航条判断区域       
+DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.35]#模拟器桌面判断区域         
+COMBAT_PAUSE_IMAGE_BOX = [0.45,0.62,0.55,0.67]#战斗终止提示判断区域            
+RETURN_COMBAT_IMAGE_BOX = [0.75,0.63,0.90,0.70]#回到作战界面判断区域    
 
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
-COMBAT_CLICK_BOX = [0.62,0.52,0.76,0.60]#在主菜单点击战斗
-BACK_TO_COMBAT_CLICK_BOX = [0.75,0.65,0.90,0.72]#主菜单回到战斗
-BACK_TO_COMBAT_AFTER_CLICK_BOX = [0.49,0.08,0.51,0.12]#战斗结束后随机点击完成结算
+COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗
+BACK_TO_COMBAT_CLICK_BOX = [0.75,0.63,0.90,0.70]#主菜单回到战斗
+BACK_TO_COMBAT_AFTER_CLICK_BOX = [0.49,0.10,0.51,0.15]#战斗结束后随机点击完成结算
 
 #从作战选择界面进入8-1n界面
-COMBAT_MISSION_CLICK_BOX = [0.07,0.3,0.17,0.38]#点击作战任务
-CHAPTER_DRAG_BOX = [0.19,0.65,0.25,0.75]#向上拖章节选择条
-CHAPTER_8_CLICK_BOX = [0.19,0.24,0.25,0.33]#选择第8章
-NIGHT_CLICK_BOX = [0.87,0.26,0.93,0.3]#选择夜战
+COMBAT_MISSION_CLICK_BOX = [0.05,0.28,0.10,0.32]#点击作战任务
+CHAPTER_DRAG_BOX = [0.16,0.75,0.22,0.80]#向上拖章节选择条
+CHAPTER_8_CLICK_BOX = [0.15,0.22,0.20,0.28]#选择第8章
+NIGHT_CLICK_BOX = [0.92,0.24,0.97,0.28]#选择夜战
 
 #开始8-1n
-EPISODE_1_CLICK_BOX = [0.40,0.38,0.80,0.46]#选择第1节
-ENTER_COMBAT_CLICK_BOX = [0.53,0.71,0.61,0.77]#进入作战
+EPISODE_1_CLICK_BOX = [0.40,0.35,0.80,0.40]#选择第1节
+ENTER_COMBAT_CLICK_BOX = [0.72,0.70,0.80,0.75]#进入作战
+END_COMBAT_STEP1_CLICK_BOX = [0.72,0.62,0.80,0.66]#终止作战
+END_COMBAT_STEP2_CLICK_BOX = [0.52,0.60,0.60,0.65]#确认终止作战
+
+#缩小地图，拖动地图
+MAP_SCALE_BOX = [0.10,0.20,0.20,0.25]
+MAP_DRAG_BOX = [0.10,0.20,0.20,0.25]
 
 #机场位置点
-AIRPORT_1_CLICK_BOX = [0.47,0.49,0.53,0.51]#下机场
-AIRPORT_2_CLICK_BOX = [0.58,0.27,0.63,0.29]#上机场
-AIRPORT_3_CLICK_BOX = [0.26,0.83,0.31,0.85]#(计划完成后)下机场
+AIRPORT_1_CLICK_BOX = [0.33,0.60,0.36,0.63]#下机场
+AIRPORT_2_CLICK_BOX = [0.36,0.33,0.38,0.35]#上机场
 
 #更换打手
-CHANGE_FORCE_STEP1_CLICK_BOX = [0.18,0.77,0.28,0.81]#点击梯队编成
-CHANGE_FORCE_STEP2_CLICK_BOX = [0.18,0.35,0.28,0.55]#点击Zas
-CHANGE_FORCE_STEP3_CLICK_BOX = [0.83,0.20,0.90,0.30]#点击排序方式
-CHANGE_FORCE_STEP4_CLICK_BOX = [0.72,0.70,0.78,0.78]#点击受损程度
-CHANGE_FORCE_STEP5_CLICK_BOX = [0.22,0.25,0.28,0.45]#选择Zas
-CHANGE_FORCE_STEP6_CLICK_BOX = [0.12,0.12,0.14,0.15]#点击返回
+CHANGE_FORCE_STEP1_CLICK_BOX = [0.17,0.74,0.26,0.77]#点击梯队编成
+CHANGE_FORCE_STEP2_CLICK_BOX = [0.15,0.35,0.25,0.55]#点击Zas
+CHANGE_FORCE_STEP3_CLICK_BOX = [0.88,0.20,0.94,0.26]#点击排序方式
+CHANGE_FORCE_STEP4_CLICK_BOX = [0.72,0.63,0.78,0.68]#点击受损程度
+CHANGE_FORCE_STEP5_CLICK_BOX = [0.20,0.25,0.25,0.40]#选择Zas
+CHANGE_FORCE_STEP6_CLICK_BOX = [0.08,0.10,0.10,0.14]#点击返回
 
 #放置队伍
-TEAM_SET_CLICK_BOX = [0.84,0.78,0.90,0.83]
-MAP_DRAG_DOWN_BOX = [0.20,0.20,0.30,0.25]#往下拖动地图
+TEAM_SET_CLICK_BOX = [0.85,0.75,0.92,0.78]
 
 #开始作战
-START_COMBAT_CLICK_BOX = [0.82,0.78,0.95,0.85]#点击开始作战
+START_COMBAT_CLICK_BOX = [0.85,0.82,0.92,0.86]#点击开始作战
 
 #计划模式
-PLAN_MODE_CLICK_BOX = [0.05,0.73,0.10,0.76]#点击计划模式
-PLAN_POINT1_CLICK_BOX = [0.42,0.74,0.46,0.76]#点击计划点1 
-MAP_DRAG_UP_BOX = [0.20,0.80,0.30,0.85]#往上拖动地图
-PLAN_POINT2_CLICK_BOX = [0.45,0.65,0.49,0.67]#点击计划点2
-PLAN_POINT3_CLICK_BOX = [0.69,0.77,0.74,0.79]#点击计划点3
-PLAN_START_CLICK_BOX = [0.88,0.80,0.98,0.85]#点击执行计划
+PLAN_MODE_CLICK_BOX = [0.04,0.77,0.10,0.79]#点击计划模式
+PLAN_POINT1_CLICK_BOX = [0.32,0.42,0.34,0.44]#点击计划点1 
+PLAN_POINT2_CLICK_BOX = [0.33,0.52,0.34,0.54]#点击计划点2
+PLAN_POINT3_CLICK_BOX = [0.39,0.54,0.40,0.56]#点击计划点3
+PLAN_START_CLICK_BOX = [0.88,0.82,0.98,0.85]#点击执行计划
 
 #补给Zas
-SUPPLY_CLICK_BOX = [0.82,0.68,0.92,0.74]#点击补给
+SUPPLY_CLICK_BOX = [0.85,0.68,0.94,0.70]#点击补给
 
 #撤退Zas
-WITHDRAW_STEP1_CLICK_BOX = [0.70,0.78,0.76,0.83]#点击撤退
-WITHDRAW_STEP2_CLICK_BOX = [0.55,0.62,0.62,0.67]#确认撤退
+WITHDRAW_STEP1_CLICK_BOX = [0.72,0.76,0.78,0.78]#点击撤退
+WITHDRAW_STEP2_CLICK_BOX = [0.55,0.61,0.62,0.64]#确认撤退
 
 #重启作战
-RESTART_STEP1_CLICK_BOX = [0.2,0.09,0.25,0.15]#点击终止作战
-RESTART_STEP2_CLICK_BOX = [0.36,0.62,0.44,0.65]#点击重新作战
+RESTART_STEP1_CLICK_BOX = [0.22,0.09,0.26,0.14]#点击终止作战
+RESTART_STEP2_CLICK_BOX = [0.34,0.61,0.43,0.63]#点击重新作战
 
 #强化（拆解）
-GOTO_POWERUP_CLICK_BOX = [0.58,0.62,0.65,0.66]#前往强化界面
-CHOOSE_RETIRE_CLICK_BOX = [0.08,0.52,0.16,0.58]#选择回收拆解选项
-CHOOSE_EQUIPMENT_CLICK_BOX = [0.40,0.26,0.43,0.33]#选择拆解装备
-CHOOSE_ORDER_CLICK_BOX = [0.87,0.59,0.93,0.63]#选择升序
-EQUIPMENT_1_CLICK_BOX = [0.09,0.3,0.17,0.36]#第一行第一件装备
-EQUIPMENT_2_CLICK_BOX = [0.21,0.3,0.29,0.36]#第一行第二件装备 
-EQUIPMENT_3_CLICK_BOX = [0.33,0.3,0.41,0.36]#第一行第三件装备
-EQUIPMENT_4_CLICK_BOX = [0.45,0.3,0.53,0.36]#第一行第四件装备 
-EQUIPMENT_5_CLICK_BOX = [0.58,0.3,0.66,0.36]#第一行第五件装备
-EQUIPMENT_6_CLICK_BOX = [0.70,0.3,0.78,0.36]#第一行第六件装备
+GOTO_POWERUP_CLICK_BOX = [0.58,0.60,0.65,0.65]#前往强化界面
+CHOOSE_RETIRE_CLICK_BOX = [0.06,0.46,0.12,0.50]#选择回收拆解选项
+CHOOSE_EQUIPMENT_CLICK_BOX = [0.40,0.26,0.45,0.30]#选择拆解装备
+CHOOSE_ORDER_CLICK_BOX = [0.87,0.52,0.93,0.55]#选择升序
+EQUIPMENT_1_CLICK_BOX = [0.02,0.3,0.07,0.36]#第一行第一件装备
+EQUIPMENT_2_CLICK_BOX = [0.21,0.3,0.25,0.36]#第一行第二件装备 
+EQUIPMENT_3_CLICK_BOX = [0.33,0.3,0.37,0.36]#第一行第三件装备
+EQUIPMENT_4_CLICK_BOX = [0.45,0.3,0.50,0.36]#第一行第四件装备 
+EQUIPMENT_5_CLICK_BOX = [0.58,0.3,0.63,0.36]#第一行第五件装备
+EQUIPMENT_6_CLICK_BOX = [0.73,0.3,0.76,0.36]#第一行第六件装备
 RETIRE_DRAG_BOX = [0.40,0.60,0.60,0.60]#往上拖一行
-CHOOSE_FINISH_CLICK_BOX = [0.84,0.78,0.92,0.86]#完成选择
-RETIRE_CLICK_BOX = [0.82,0.72,0.9,0.78]#点击拆解
-CONFIRM_RETIRE_CLICK_BOX = [0.54,0.76,0.64,0.82]#确认拆解高星级
+CHOOSE_FINISH_CLICK_BOX = [0.88,0.80,0.92,0.86]#完成选择
+RETIRE_CLICK_BOX = [0.84,0.77,0.90,0.80]#点击拆解
+CONFIRM_RETIRE_CLICK_BOX = [0.54,0.74,0.64,0.78]#确认拆解高星级
 
 #跳至主菜单/战斗菜单/工厂菜单
-NAVIGATE_BAR_CLICK_BOX = [0.19,0.08,0.22,0.14]#打开导航条
-NAVIGATE_BAR_DRAG_BOX = [0.15,0.32,0.17,0.36]#向右拖导航条
-NAVIGATE_COMBAT_CLICK_BOX = [0.15,0.32,0.17,0.36]#跳转至作战菜单
-NAVIGATE_FACTORY_CLICK_BOX = [0.35,0.32,0.37,0.36]#跳转至工厂菜单
-NAVIGATE_MAIN_MENU_CLICK_BOX = [0.20,0.21,0.28,0.25]#跳转至主菜单
+NAVIGATE_BAR_CLICK_BOX = [0.15,0.10,0.18,0.15]#打开导航条
+NAVIGATE_BAR_DRAG_BOX = [0.10,0.28,0.17,0.32]#向右拖导航条
+NAVIGATE_COMBAT_CLICK_BOX = [0.10,0.28,0.12,0.32]#跳转至作战菜单
+NAVIGATE_FACTORY_CLICK_BOX = [0.38,0.28,0.40,0.32]#跳转至工厂菜单
+NAVIGATE_MAIN_MENU_CLICK_BOX = [0.20,0.18,0.28,0.20]#跳转至主菜单
 
 #收后勤支援
 L_SUPPORT_STEP1_CLICK_BOX = [0.50,0.50,0.60,0.60]#确认后勤完成
-L_SUPPORT_STEP2_CLICK_BOX = [0.53,0.62,0.62,0.67]#再次派出
+L_SUPPORT_STEP2_CLICK_BOX = [0.53,0.60,0.62,0.65]#再次派出
 
 #启动游戏
 START_GAME_STEP1_CLICK_BOX = [0.14,0.23,0.18,0.28]#点击图标启动
@@ -129,10 +132,10 @@ START_GAME_STEP2_CLICK_BOX = [0.50,0.70,0.50,0.70]#点击一次
 START_GAME_STEP3_CLICK_BOX = [0.50,0.75,0.50,0.75]#点击开始 
 
 #关闭游戏
-CLOSE_GAME_CLICK_BOX = [0.52,0.03,0.53,0.04]
+CLOSE_GAME_CLICK_BOX = [0.56,0.02,0.57,0.04]
 
 #关闭作战断开提醒
-CLOSE_TIP_CLICK_BOX = [0.45,0.67,0.55,0.73]
+CLOSE_TIP_CLICK_BOX = [0.45,0.62,0.55,0.67]
 
 #=============================================#
 #                                             #
@@ -142,7 +145,7 @@ CLOSE_TIP_CLICK_BOX = [0.45,0.67,0.55,0.73]
 
 #一个好程序都应该有一个较为优雅的启动提醒界面？
 def preface():    
-    for x in range(5,-1,-1):
+    for x in range(3,-1,-1):
         mystr =">>> "+str(x)+"s 后将开始操作，请切换至模拟器界面"
         print(mystr,end="")
         print("\b" * (len(mystr)*2),end = "",flush=True)
@@ -179,54 +182,43 @@ def getImage(box):
     #windowData = [left,top,right,bottom,width,height]        
     windowData = getWindowData()
     imgLeft   = windowData[0] + int(windowData[4] * box[0])
-    imgTop  = windowData[1] + int(windowData[5] * box[1])
+    imgTop    = windowData[1] + int(windowData[5] * box[1])
     imgRight  = windowData[0] + int(windowData[4] * box[2])
     imgBottom = windowData[1] + int(windowData[5] * box[3])
     img = ImageGrab.grab((imgLeft,imgTop,imgRight,imgBottom))
     return img
     
     
-#点击box内随机一点，点完后会随机等待一段时间
-def mouseClick(box,minTime,maxTime):
+#点击box内随机一点，如果提供具体xy偏量，则点击精确的点
+def mouseClick(box,minTime,maxTime,exact_x = 0,exact_y = 0):
     #box = [left,top,right,bottom]
     windowData = getWindowData()
     width  = box[2] - box[0]
     height = box[3] - box[1]
-    clickX = windowData[0] + int(windowData[4] * box[0]) + int(windowData[4] * width  * random.random())
-    clickY = windowData[1] + int(windowData[5] * box[1]) + int(windowData[5] * height * random.random())
+    if exact_x == 0 and exact_y == 0:
+        clickX = windowData[0] + (int)(windowData[4] * box[0] + windowData[4] * width  * random.random())
+        clickY = windowData[1] + (int)(windowData[5] * box[1] + windowData[5] * height * random.random())
+    else:
+        clickX = windowData[0] + (int)(windowData[4] * box[0]) + exact_x
+        clickY = windowData[1] + (int)(windowData[5] * box[1]) + exact_y
     clickPos = (clickX,clickY)
     win32api.SetCursorPos(clickPos)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,0,0,0,0)
-    wait(minTime,maxTime)#等待minTime~maxTime的时间
+    wait(minTime,maxTime)
 
 
 #模拟鼠标拖动，box为起始区域,times为拖动次数,distance为单次拖动距离
-#frame_interval为鼠标拖动帧间隔,越小鼠标拖动越快
+#dx,dy为组成移动方向向量，frame_interval为鼠标拖动帧间隔,越小鼠标拖动越快
 #multi_interval为连续拖动时的时间间隔
-#direct   drag_towards
-#  0          up
-#  1         down
-#  2         left
-#  3         right
-def mouseDrag(box,direct,times,distance,frame_interval,multi_interval):
+def mouseDrag(box,dx,dy,times,distance,frame_interval,multi_interval):
     windowData = getWindowData()
     width  = box[2] - box[0]
     height = box[3] - box[1]
-    dragX = (int)(windowData[0] + windowData[4] * box[0] + windowData[4] * width  * random.random())
-    dragY = (int)(windowData[1] + windowData[5] * box[1] + windowData[5] * height * random.random())
-    dragPos = (dragX, dragY)
-    if direct == 0:
-        dx, dy =  0,-1
-    elif direct == 1:
-        dx, dy =  0, 1
-    elif direct == 2:
-        dx, dy = -1, 0
-    elif direct == 3:
-        dx, dy =  1, 0
-    else:
-        dx, dy =  0, 0
     for i in range(times):
+        dragX = windowData[0] + int(windowData[4] * box[0] + windowData[4] * width  * random.random())
+        dragY = windowData[1] + int(windowData[5] * box[1] + windowData[5] * height * random.random())
+        dragPos = (dragX, dragY)
         win32api.SetCursorPos(dragPos)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,0,0,0,0)
         for i in range(distance):
@@ -237,13 +229,33 @@ def mouseDrag(box,direct,times,distance,frame_interval,multi_interval):
         time.sleep(multi_interval)
 
 
+#模拟Ctrl和滚轮实现缩放地图
+#direct = 0 : 放大      direct = 1 : 缩小   times为连续缩放次数
+def scaleMap(box,direct,times):
+    windowData = getWindowData()
+    width  = box[2] - box[0]
+    height = box[3] - box[1]
+    scaleX = windowData[0] + int(windowData[4] * box[0] + windowData[4] * width  * random.random())
+    scaleY = windowData[1] + int(windowData[5] * box[1] + windowData[5] * height * random.random())
+    scalePos = (scaleX, scaleY)
+    win32api.SetCursorPos(scalePos)
+    win32api.keybd_event(0x11,0,0,0)#按下Ctrl键
+    for i in range(times):
+        if direct == 0:
+            win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL,0,0,1)
+        else:
+            win32api.mouse_event(win32con.MOUSEEVENTF_WHEEL,0,0,-1)
+        wait(0.5,0.7)
+    win32api.keybd_event(0x11, 0, win32con.KEYEVENTF_KEYUP,0)    
+    time.sleep(1)
+        
+
 #比较两图片吻合度，结构相似性比较法（真的好用）
 def imageCompare(img1,img2):
     gray_img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     gray_img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     (score, diff) = structural_similarity(gray_img1, gray_img2, full=True)
     return score > 0.95
-
 
 #=============================================#
 #                                             #
@@ -256,7 +268,14 @@ def isPlanFinished():
     initImage = cv2.imread(IMAGE_PATH+"plan_finish.png")
     capImage  = getImage(PLAN_FINISH_IMAGE_BOX)
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
-    return imageCompare(initImage,capImage)   
+    #双重判断
+    if imageCompare(initImage,capImage):
+        time.sleep(5)
+        capImage  = getImage(PLAN_FINISH_IMAGE_BOX)
+        capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
+        if imageCompare(initImage,capImage):
+            return True
+    return False
          
 #判断是否进入了8-1n地图
 def isInMap():
@@ -329,7 +348,7 @@ def isReturnCombat():
     return imageCompare(initImage,capImage)
 
 #当不知道在哪时，判断是否有导航栏，有就可以通过导航栏回到作战菜单
-def findNavigate():
+def isNavigate():
     initImage = cv2.imread(IMAGE_PATH+"navigate.png")
     capImage  = getImage(NAVIGATE_IMAGE_BOX)
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
@@ -351,7 +370,7 @@ def mainMenuBackToCombat():
 def combatMenuTo8_1n():
     print("ACTION: 前往8-1n选择界面")
     mouseClick(COMBAT_MISSION_CLICK_BOX,1,2)
-    mouseDrag(CHAPTER_DRAG_BOX,0,3,500,0.001,2)
+    mouseDrag(CHAPTER_DRAG_BOX,0,-1,3,400,0.001,0.8)
     mouseClick(CHAPTER_8_CLICK_BOX,1,2)
     mouseClick(NIGHT_CLICK_BOX,1,2)
 
@@ -361,12 +380,20 @@ def start8_1n():
     mouseClick(EPISODE_1_CLICK_BOX,2,3)
     mouseClick(ENTER_COMBAT_CLICK_BOX,4,5)    
 
-#战前准备，给一队补给
+#终止8-1n
+def end8_1n():
+    print("ACTION: 终止8-1n")
+    mouseClick(EPISODE_1_CLICK_BOX,2,3)
+    mouseClick(END_COMBAT_STEP1_CLICK_BOX,2,3)  
+    mouseClick(END_COMBAT_STEP2_CLICK_BOX,2,3)  
+
+#战前准备，调整地图，补给1队
 def combatPrepare():
     print("STATE: 战前整备")
+    scaleMap(MAP_SCALE_BOX,1,10)
+    mouseDrag(MAP_DRAG_BOX,1,1,1,200,0.001,1)
     setTeam()
     startCombat()
-    mouseDrag(MAP_DRAG_UP_BOX,0,2,500,0.002,1)
     mouseClick(AIRPORT_1_CLICK_BOX,1,2)
     mouseClick(AIRPORT_1_CLICK_BOX,1,2)
     mouseClick(SUPPLY_CLICK_BOX,2,3)
@@ -389,10 +416,9 @@ def changeForce():
 #放置队伍
 def setTeam():
     print("ACTION: 放置队伍")
-    mouseClick(AIRPORT_1_CLICK_BOX,1.2,1.5)
+    mouseClick(AIRPORT_1_CLICK_BOX,1.5,2)
     mouseClick(TEAM_SET_CLICK_BOX,2,2.5)
-    mouseDrag(MAP_DRAG_DOWN_BOX,1,2,500,0.002,1)
-    mouseClick(AIRPORT_2_CLICK_BOX,1.2,1.5)
+    mouseClick(AIRPORT_2_CLICK_BOX,1.5,2)
     mouseClick(TEAM_SET_CLICK_BOX,2,2.5)
 
 #开始作战
@@ -406,7 +432,6 @@ def planMode():
     mouseClick(AIRPORT_2_CLICK_BOX,0.8,1)
     mouseClick(PLAN_MODE_CLICK_BOX,1,1.5)
     mouseClick(PLAN_POINT1_CLICK_BOX,0.8,1)
-    mouseDrag(MAP_DRAG_UP_BOX,0,1,500,0.002,1)
     mouseClick(PLAN_POINT2_CLICK_BOX,0.25,0.3)
     mouseClick(PLAN_POINT3_CLICK_BOX,0.25,0.3)
     mouseClick(PLAN_START_CLICK_BOX,0,0)
@@ -414,22 +439,22 @@ def planMode():
 #补给休息队
 def supplyRest():
     print("ACTION: 补给Zas")
-    mouseClick(AIRPORT_3_CLICK_BOX,1.5,2)
-    mouseClick(AIRPORT_3_CLICK_BOX,2,3)
+    mouseClick(AIRPORT_1_CLICK_BOX,1.5,2)
+    mouseClick(AIRPORT_1_CLICK_BOX,2,3)
     mouseClick(SUPPLY_CLICK_BOX,2,3)
     
 #撤退休息队
 def withdraw():
     print("ACTION: 撤退Zas")
-    mouseClick(AIRPORT_3_CLICK_BOX,1.5,2)
-    mouseClick(WITHDRAW_STEP1_CLICK_BOX,2,3)
+    mouseClick(AIRPORT_1_CLICK_BOX,1.5,2)
+    mouseClick(WITHDRAW_STEP1_CLICK_BOX,2,2)
     mouseClick(WITHDRAW_STEP2_CLICK_BOX,2,2)
 
 #重启作战
 def restartCombat():
     print("ACTION: 重启作战")
     mouseClick(RESTART_STEP1_CLICK_BOX,1,1.5)
-    mouseClick(RESTART_STEP2_CLICK_BOX,4.5,5)
+    mouseClick(RESTART_STEP2_CLICK_BOX,6,6)
 
 #强化（拆解）
 def gotoPowerup():  
@@ -440,13 +465,13 @@ def gotoPowerup():
     mouseClick(CHOOSE_EQUIPMENT_CLICK_BOX,1,2)
     mouseClick(CHOOSE_ORDER_CLICK_BOX,1,2)
     for i in range(10):
-        mouseClick(EQUIPMENT_1_CLICK_BOX,0.2,0.3)#选六个
-        mouseClick(EQUIPMENT_2_CLICK_BOX,0.2,0.3)
-        mouseClick(EQUIPMENT_3_CLICK_BOX,0.2,0.3)
-        mouseClick(EQUIPMENT_4_CLICK_BOX,0.2,0.3)
-        mouseClick(EQUIPMENT_5_CLICK_BOX,0.2,0.3)
-        mouseClick(EQUIPMENT_6_CLICK_BOX,0.2,0.3)
-        mouseDrag(RETIRE_DRAG_BOX,0,1,300,0.025,1)#往上拖一行
+        mouseClick(EQUIPMENT_1_CLICK_BOX,0.25,0.3)#选六个
+        mouseClick(EQUIPMENT_2_CLICK_BOX,0.25,0.3)
+        mouseClick(EQUIPMENT_3_CLICK_BOX,0.25,0.3)
+        mouseClick(EQUIPMENT_4_CLICK_BOX,0.25,0.3)
+        mouseClick(EQUIPMENT_5_CLICK_BOX,0.25,0.3)
+        mouseClick(EQUIPMENT_6_CLICK_BOX,0.25,0.3)
+        mouseDrag(RETIRE_DRAG_BOX,0,-1,1,325,0.005,1)#往上拖一行
     mouseClick(CHOOSE_FINISH_CLICK_BOX,1,2)
     mouseClick(RETIRE_CLICK_BOX,1,2)
     mouseClick(CONFIRM_RETIRE_CLICK_BOX,3,4)    
@@ -467,7 +492,6 @@ def gotoFactory():
 def backToCombatMenu():
     print("ACTION: 跳转至战斗菜单")
     mouseClick(NAVIGATE_BAR_CLICK_BOX,1,2)
-    mouseDrag(NAVIGATE_BAR_DRAG_BOX,3,1,150,0.01,1)
     mouseClick(NAVIGATE_COMBAT_CLICK_BOX,5,6)
 
 #收后勤支援
@@ -509,7 +533,7 @@ if __name__ == "__main__":
 
     while True:
         if isInMap():
-            print("STATE：8-1n地图")
+            print("STATE：进入地图")
             failCount = 0
             if firstCombat:
                 firstCombat = False
@@ -558,6 +582,7 @@ if __name__ == "__main__":
         elif isGotoPowerup():
             print("STATE： 强化提醒界面")
             gotoPowerup()
+            firstCombat = True
             backToMainMenu()
         elif isCombatMenu():
             print("STATE： 战斗菜单")
@@ -570,8 +595,9 @@ if __name__ == "__main__":
         elif isReturnCombat():
             print("STATE： 返回作战界面")
             failCount = 0
-            mainMenuBackToCombat()
-            restartCombat()
+            mainMenuToCombatMenu()
+            combatMenuTo8_1n()
+            end8_1n()
             firstCombat = True
         elif isMainMenu():
             print("STATE： 主菜单界面")
@@ -588,17 +614,12 @@ if __name__ == "__main__":
             continue
         else:#不知道在哪
             print("ERROR： 当前状态未知!")
-            if findNavigate():
-                print("STATE：找到导航条")
-                backToMainMenu()
-                failCount = 0
-            else: 
-                failCount += 1
-                if failCount == 5:  
-                    print(">>> ",datetime.datetime.now()," 无法确定当前状态,关闭重启！")
-                    closeGame()
-                else:
-                    time.sleep(5)
+            failCount += 1
+            if failCount == 5:  
+                print(">>> ",datetime.datetime.now()," 无法确定当前状态,关闭重启！")
+                closeGame()
+            else:
+                time.sleep(5)
                 
             
             
