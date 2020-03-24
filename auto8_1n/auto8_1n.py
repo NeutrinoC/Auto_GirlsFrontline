@@ -459,7 +459,7 @@ def restartCombat():
 #强化（拆解）
 def gotoPowerup():  
     print("ACTION: 拆解装备") 
-    mouseClick(GOTO_POWERUP_CLICK_BOX,4,5)
+    mouseClick(GOTO_POWERUP_CLICK_BOX,5,6)
     gotoFactory()
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_EQUIPMENT_CLICK_BOX,1,2)
@@ -615,7 +615,7 @@ if __name__ == "__main__":
         else:#不知道在哪
             print("ERROR： 当前状态未知!")
             failCount += 1
-            if failCount == 5:  
+            if failCount >= 5:  
                 print(">>> ",datetime.datetime.now()," 无法确定当前状态,关闭重启！")
                 closeGame()
             else:

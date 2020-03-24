@@ -34,7 +34,7 @@ CHOOSE_0_2_IMAGE_BOX = [0.50,0.43,0.60,0.50]#0-2界面判断区域
 MAP_0_2_IMAGE_BOX = [0.82,0.80,0.95,0.88]#0-2地图判断区域                             
 PLAN_FINISH_IMAGE_BOX = [0.80,0.82,0.97,0.88]#计划完成判断区域    
 COMBAT_START_IMAGE_BOX = [0.80,0.82,0.97,0.88]#开启作战判断区域                              
-GOTO_POWERUP_IMAGE_BOX = [0.54,0.60,0.68,0.68]#提醒强化判断区域               
+GOTO_POWERUP_IMAGE_BOX = [0.58,0.60,0.68,0.64]#提醒强化判断区域               
 NAVIGATE_IMAGE_BOX = [0.15,0.10,0.20,0.15]#导航条判断区域       
 DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.35]#模拟器桌面判断区域         
 COMBAT_PAUSE_IMAGE_BOX = [0.45,0.62,0.55,0.67]#战斗终止提示判断区域            
@@ -112,19 +112,19 @@ COMBAT_END_STEP2_CLICK_BOX = [0.80,0.40,0.90,0.60]#退出人形掉落界面
 COMBAT_END_STEP3_CLICK_BOX = [0.80,0.40,0.90,0.60]#退出战役结算界面          
 
 #强化（拆解）
-GOTO_POWERUP_CLICK_BOX = [0.56,0.61,0.66,0.67]#前往强化界面
-CHOOSE_RETIRE_CLICK_BOX = [0.08,0.52,0.16,0.58]#选择回收拆解选项
+GOTO_POWERUP_CLICK_BOX = [0.58,0.60,0.68,0.64]#前往强化界面
+CHOOSE_RETIRE_CLICK_BOX = [0.06,0.46,0.12,0.50]#选择回收拆解选项
 CHOOSE_CHARACTER_CLICK_BOX = [0.25,0.26,0.3,0.33]#选择拆解人形
-CHARACTER_1_CLICK_BOX = [0.09,0.3,0.17,0.36]#第一行第一只人形 
-CHARACTER_2_CLICK_BOX = [0.21,0.3,0.29,0.36]#第一行第二只人形 
-CHARACTER_3_CLICK_BOX = [0.33,0.3,0.41,0.36]#第一行第三只人形 
-CHARACTER_4_CLICK_BOX = [0.45,0.3,0.53,0.36]#第一行第四只人形 
-CHARACTER_5_CLICK_BOX = [0.58,0.3,0.66,0.36]#第一行第五只人形 
-CHARACTER_6_CLICK_BOX = [0.70,0.3,0.78,0.36]#第一行第六只人形 
+CHARACTER_1_CLICK_BOX = [0.12,0.3,0.14,0.36]#第一行第一只人形 
+CHARACTER_2_CLICK_BOX = [0.24,0.3,0.26,0.36]#第一行第二只人形 
+CHARACTER_3_CLICK_BOX = [0.36,0.3,0.38,0.36]#第一行第三只人形 
+CHARACTER_4_CLICK_BOX = [0.48,0.3,0.50,0.36]#第一行第四只人形 
+CHARACTER_5_CLICK_BOX = [0.60,0.3,0.62,0.36]#第一行第五只人形 
+CHARACTER_6_CLICK_BOX = [0.72,0.3,0.74,0.36]#第一行第六只人形 
 RETIRE_DRAG_BOX = [0.40,0.60,0.60,0.60]#往上拖一行
-CHOOSE_FINISH_CLICK_BOX = [0.84,0.78,0.92,0.86]#完成选择
-RETIRE_CLICK_BOX = [0.82,0.72,0.9,0.78]#点击拆解
-CONFIRM_RETIRE_CLICK_BOX = [0.54,0.76,0.64,0.82]#确认拆解高星人形
+CHOOSE_FINISH_CLICK_BOX = [0.88,0.68,0.92,0.74]#完成选择
+RETIRE_CLICK_BOX = [0.84,0.77,0.90,0.80]#点击拆解
+CONFIRM_RETIRE_CLICK_BOX = [0.54,0.74,0.64,0.78]#确认拆解高星人形
 
 #跳至主菜单/战斗菜单/工厂菜单
 NAVIGATE_BAR_CLICK_BOX = [0.15,0.10,0.18,0.15]#打开导航条
@@ -488,14 +488,14 @@ def gotoPowerup():
     mouseClick(GOTO_POWERUP_CLICK_BOX,4,5)
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_CHARACTER_CLICK_BOX,1,2)
-    for i in range(8):
+    for i in range(7):
         mouseClick(CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
         mouseClick(CHARACTER_2_CLICK_BOX,0.2,0.3)
         mouseClick(CHARACTER_3_CLICK_BOX,0.2,0.3)
         mouseClick(CHARACTER_4_CLICK_BOX,0.2,0.3)
         mouseClick(CHARACTER_5_CLICK_BOX,0.2,0.3)
         mouseClick(CHARACTER_6_CLICK_BOX,0.2,0.3)
-        mouseDrag(RETIRE_DRAG_BOX,0,1,300,0.025,1)#往上拖一行
+        mouseDrag(RETIRE_DRAG_BOX,0,-1,1,325,0.005,1)#往上拖一行
     mouseClick(CHOOSE_FINISH_CLICK_BOX,1,2)
     mouseClick(RETIRE_CLICK_BOX,1,2)
     mouseClick(CONFIRM_RETIRE_CLICK_BOX,3,4)    
@@ -622,7 +622,7 @@ if __name__ == "__main__":
         else:#既不是后勤结束界面也不是
             print("WARNING： 当前状态未知!")
             failCount += 1
-            if failCount == 5:  
+            if failCount >= 5:  
                 print(">>> ",datetime.datetime.now()," 无法确定当前状态,关闭重启！")
                 closeGame()
             else:
