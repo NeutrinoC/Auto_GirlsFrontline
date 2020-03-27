@@ -27,7 +27,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.50,0.75,0.58]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.58]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域          
 CHOOSE_8_1N_IMAGE_BOX = [0.50,0.32,0.60,0.40]#8-1n菜单界面判断区域                        
@@ -390,6 +390,7 @@ def end8_1n():
 #战前准备，调整地图，补给1队
 def combatPrepare():
     print("STATE: 战前整备")
+    mouseClick(MAP_SCALE_BOX,0.5,0.6)
     scaleMap(MAP_SCALE_BOX,1,10)
     mouseDrag(MAP_DRAG_BOX,1,1,1,200,0.001,1)
     setTeam()
@@ -474,7 +475,8 @@ def gotoPowerup():
         mouseDrag(RETIRE_DRAG_BOX,0,-1,1,325,0.005,1)#往上拖一行
     mouseClick(CHOOSE_FINISH_CLICK_BOX,1,2)
     mouseClick(RETIRE_CLICK_BOX,1,2)
-    mouseClick(CONFIRM_RETIRE_CLICK_BOX,3,4)    
+    mouseClick(CONFIRM_RETIRE_CLICK_BOX,0.5,1)    
+    mouseClick(CONFIRM_RETIRE_CLICK_BOX,3.5,4)
 
 #跳转至主菜单(回主菜单收后勤)
 def backToMainMenu():
