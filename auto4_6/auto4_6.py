@@ -29,6 +29,7 @@ L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域  
 CHOOSE_4_6_IMAGE_BOX = [0.50,0.62,0.60,0.69]#4-6菜单界面判断区域     
 MAP_IMAGE_BOX = [0.82,0.80,0.95,0.88]#进入地图判断区域   
+SET_TEAM_IMAGE_BOX = [0.85,0.75,0.92,0.78]#队伍放置判断区域 
 COMBAT_START_IMAGE_BOX = [0.80,0.82,0.97,0.88]#开启作战判断区域      
 ENEMY_IMAGE_BOX = [0.45,0.60,0.65,0.66]#遇敌判断区域
 EVENT_IMAGE_BOX = [0.35,0.49,0.42,0.54]#事件判断区域
@@ -43,7 +44,7 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.63,0.90,0.70]#回到作战界面判断区域
 COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗
 
 #从作战选择界面进入4-6界面
-COMBAT_MISSION_CLICK_BOX = [0.05,0.28,0.10,0.32]#点击作战任务
+COMBAT_MISSION_CLICK_BOX = [0.05,0.20,0.10,0.24]#点击作战任务
 CHAPTER_DRAG_BOX = [0.16,0.35,0.22,0.40]#向上拖章节选择条
 CHAPTER_4_CLICK_BOX = [0.15,0.58,0.20,0.65]#选择第8章
 NORMAL_CLICK_BOX = [0.74,0.24,0.77,0.28]#选择普通难度
@@ -310,6 +311,13 @@ def isReturnCombat():
     capImage  = getImage(RETURN_COMBAT_IMAGE_BOX)
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
     return imageCompare(initImage,capImage)
+
+#在队伍放置界面
+def isSetTeam():
+    initImage = cv2.imread(IMAGE_PATH+"set_team.png")
+    capImage  = getImage(SET_TEAM_IMAGE_BOX)
+    capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
+    return imageCompare(initImage,capImage)
 #=============================================#
 #                                             #
 #                 动作执行函数                 #
@@ -356,15 +364,52 @@ def combatPrepare(tiny = False):
 #放置队伍
 def setTeam():
     print("ACTION: 放置队伍")
-    mouseClick(COMMAND_CLICK_BOX,2.5,3)
-    mouseClick(TEAM_SET_CLICK_BOX,2,2)
-    mouseClick(AIRPORT_CLICK_BOX,1.5,2)
-    mouseClick(TEAM_SET_CLICK_BOX,2,2)
+    mouseClick(COMMAND_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isSetTeam() and checkCount < 20:
+        time.sleep(0.4)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(0.2)
+    mouseClick(TEAM_SET_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isMap() and checkCount < 20:
+        time.sleep(0.4)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(0.2)
+    mouseClick(AIRPORT_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isSetTeam() and checkCount < 20:
+        time.sleep(0.4)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(0.2)
+    mouseClick(TEAM_SET_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isMap() and checkCount < 20:
+        time.sleep(0.4)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(0.2)
+    return True
 
 #开始作战
 def startCombat():
     print("ACTION: 开始作战")
-    mouseClick(START_COMBAT_CLICK_BOX,3,3)
+    mouseClick(START_COMBAT_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isCombatStart() and checkCount < 20:
+        time.sleep(0.5)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(2)
+    return True
 
 #前往1号点
 def action_1():
@@ -423,7 +468,15 @@ def withdraw():
 def restartCombat():
     print("ACTION: 重启作战")
     mouseClick(RESTART_STEP1_CLICK_BOX,1,1.5)
-    mouseClick(RESTART_STEP2_CLICK_BOX,6,6)
+    mouseClick(RESTART_STEP2_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isMap() and checkCount < 30:
+        time.sleep(0.5)
+        checkCount += 1
+    if checkCount >= 30:
+        return False
+    time.sleep(0.5)
+    return True    
 
 #收后勤支援
 def takeLSupport():
@@ -464,8 +517,14 @@ if __name__ == "__main__":
             if firstCombat:
                 firstCombat = False
                 combatPrepare()
-            setTeam()
-            startCombat()
+            if not setTeam():
+                print("ERROR：放置队伍失败")
+                closeGame()
+                continue
+            if not startCombat():
+                print("ERROR：开启作战失败")
+                closeGame()
+                continue
             checkCount = 0
             while not isCombatStart() and checkCount < 50:#防止网络卡顿，最多等10s
                 checkCount += 1
@@ -481,7 +540,10 @@ if __name__ == "__main__":
                 continue
             if action_4():
                 continue
-            restartCombat()
+            if not restartCombat():
+                print("ERROR：重启作战失败")
+                closeGame()
+                continue                
             currentTime = datetime.datetime.now()
             runtime = currentTime - startTime
             print('> 已运行：',runtime)       
