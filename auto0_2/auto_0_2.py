@@ -36,8 +36,8 @@ SET_TEAM_IMAGE_BOX = [0.85,0.75,0.92,0.78]#队伍放置判断区域
 FORM_TEAM_IMAGE_BOX = [0.28,0.38,0.38,0.50]#队伍编成判断区域 
 CHANGE_MEMBER_IMAGE_BOX = [0.90,0.30,0.95,0.40]#人员选择判断区域       
 COMBAT_START_IMAGE_BOX = [0.82,0.82,0.95,0.88]#战役开始判断区域    
-TEAM_INFO_IMAGE_BOX = [0.85,0.67,0.94,0.71]#队伍详情页判断区域                      
-PLAN_FINISH_IMAGE_BOX = [0.80,0.82,0.97,0.88]#计划完成判断区域                         
+TEAM_INFO_IMAGE_BOX = [0.85,0.67,0.94,0.71]#队伍详情页判断区域                    
+COMBAT_FINISH_IMAGE_BOX = [0.05,0.19,0.15,0.23]#战役完成判断区域   
 GOTO_POWERUP_IMAGE_BOX = [0.58,0.60,0.68,0.64]#提醒强化判断区域               
 NAVIGATE_IMAGE_BOX = [0.15,0.10,0.20,0.15]#导航条判断区域       
 DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.35]#模拟器桌面判断区域         
@@ -105,30 +105,35 @@ SUPPLY_STEP2_CLICK_BOX = [0.20,0.20,0.30,0.25]#取消选中
 PLAN_MODE_CLICK_BOX = [0.04,0.77,0.10,0.79]#点击计划模式
 PLAN_POINT1_CLICK_BOX = [0.45,0.67,0.47,0.69]#点击计划点1 
 PLAN_POINT2_CLICK_BOX = [0.45,0.53,0.47,0.54]#点击计划点2
-PLAN_POINT3_CLICK_BOX = [0.63,0.54,0.65,0.56]#点击计划点3
+PLAN_POINT3_CLICK_BOX = [0.66,0.63,0.67,0.64]#点击计划点3
 PLAN_START_CLICK_BOX = [0.88,0.82,0.98,0.85]#点击执行计划
-
-#在终点点击结束回合
-ACTION_END_CLICK_BOX = [0.88,0.82,0.96,0.88] 
 
 #战役结算
 COMBAT_END_CLICK_BOX = [0.48,0.08,0.52,0.10]#战役结算     
                 
-
-#强化（拆解）
+#拆解
 GOTO_POWERUP_CLICK_BOX = [0.58,0.60,0.68,0.64]#前往强化界面
 CHOOSE_RETIRE_CLICK_BOX = [0.06,0.46,0.12,0.50]#选择回收拆解选项
-CHOOSE_CHARACTER_CLICK_BOX = [0.25,0.26,0.3,0.33]#选择拆解人形
-CHARACTER_1_CLICK_BOX = [0.12,0.3,0.14,0.36]#第一行第一只人形 
-CHARACTER_2_CLICK_BOX = [0.24,0.3,0.26,0.36]#第一行第二只人形 
-CHARACTER_3_CLICK_BOX = [0.36,0.3,0.38,0.36]#第一行第三只人形 
-CHARACTER_4_CLICK_BOX = [0.48,0.3,0.50,0.36]#第一行第四只人形 
-CHARACTER_5_CLICK_BOX = [0.60,0.3,0.62,0.36]#第一行第五只人形 
-CHARACTER_6_CLICK_BOX = [0.72,0.3,0.74,0.36]#第一行第六只人形 
+CHOOSE_RETIRE_CHARACTER_CLICK_BOX = [0.25,0.26,0.3,0.33]#选择拆解人形
+RETIRE_CHARACTER_1_CLICK_BOX = [0.12,0.3,0.14,0.36]#第一行第一只人形 
+RETIRE_CHARACTER_2_CLICK_BOX = [0.24,0.3,0.26,0.36]#第一行第二只人形 
+RETIRE_CHARACTER_3_CLICK_BOX = [0.36,0.3,0.38,0.36]#第一行第三只人形 
+RETIRE_CHARACTER_4_CLICK_BOX = [0.48,0.3,0.50,0.36]#第一行第四只人形 
+RETIRE_CHARACTER_5_CLICK_BOX = [0.60,0.3,0.62,0.36]#第一行第五只人形 
+RETIRE_CHARACTER_6_CLICK_BOX = [0.72,0.3,0.74,0.36]#第一行第六只人形 
 RETIRE_DRAG_BOX = [0.40,0.60,0.60,0.60]#往上拖一行
-CHOOSE_FINISH_CLICK_BOX = [0.88,0.68,0.92,0.74]#完成选择
+CHOOSE_FINISH_RETIRE_CLICK_BOX = [0.88,0.68,0.92,0.74]#完成选择
 RETIRE_CLICK_BOX = [0.84,0.77,0.90,0.80]#点击拆解
 CONFIRM_RETIRE_CLICK_BOX = [0.54,0.74,0.64,0.78]#确认拆解高星人形
+
+#强化
+CHOOSE_POWERUP_CHARACTER_CLICK_BOX = [0.20,0.40,0.3,0.50]#选择被强化人形
+FIRST_CHARACTER_CLICK_BOX = [0.10,0.3,0.14,0.36]#选择第一只人形 
+CHOOSE_EXP_CHARACTER_CLICK_BOX = [0.40,0.32,0.43,0.36]#选择狗粮
+AUTO_CHOOSE_CLICK_BOX = [0.88,0.66,0.94,0.72]#智能选择
+CHOOSE_CONFIRM_CLICK_BOX = [0.88,0.66,0.94,0.72]#完成选择
+POWERUP_CLICK_BOX = [0.86,0.75,0.92,0.78]#点击强化
+POWERUP_FINISH_CLICK_BOX = [0.46,0.64,0.54,0.66]#完成强化
 
 #跳至主菜单/战斗菜单/工厂菜单
 NAVIGATE_BAR_CLICK_BOX = [0.15,0.10,0.18,0.15]#打开导航条
@@ -281,19 +286,12 @@ def imageCompare(img1,img2):
 #                                             #
 #=============================================#
     
-#判断是否计划结束
-def isPlanFinished():
-    initImage = cv2.imread(IMAGE_PATH+"plan_finish.png")
-    capImage  = getImage(PLAN_FINISH_IMAGE_BOX)
+#判断是否战役结束
+def isCombatFinished():
+    initImage = cv2.imread(IMAGE_PATH+"combat_finish.png")
+    capImage  = getImage(COMBAT_FINISH_IMAGE_BOX)
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
-    #双重判断
-    if imageCompare(initImage,capImage):
-        time.sleep(5)
-        capImage  = getImage(PLAN_FINISH_IMAGE_BOX)
-        capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
-        if imageCompare(initImage,capImage):
-            return True
-    return False
+    return imageCompare(initImage,capImage)
          
 #判断是否进入了0-2地图
 def isInMap():
@@ -571,8 +569,7 @@ def supplyAirport():
     if checkCount >= 20:
         return False
     time.sleep(0.2)
-    mouseClick(SUPPLY_STEP1_CLICK_BOX,2,3)#点击补给
-    mouseClick(SUPPLY_STEP2_CLICK_BOX,0,0)
+    mouseClick(SUPPLY_STEP1_CLICK_BOX,0,0)#点击补给
     checkCount = 0
     while not isCombatStart() and checkCount < 20:
         time.sleep(0.5)
@@ -585,7 +582,7 @@ def supplyAirport():
 #撤退休息队
 def withdraw():
     print("ACTION: 撤退机场队")
-    mouseClick(AIRPORT_CLICK_BOX,1.5,2)
+    #mouseClick(AIRPORT_CLICK_BOX,1.5,2)
     mouseClick(AIRPORT_CLICK_BOX,0,0)
     checkCount = 0
     while not isTeamInfo() and checkCount < 20:
@@ -595,7 +592,15 @@ def withdraw():
         return False
     time.sleep(0.2)
     mouseClick(WITHDRAW_STEP1_CLICK_BOX,2,2)
-    mouseClick(WITHDRAW_STEP2_CLICK_BOX,2,2)
+    mouseClick(WITHDRAW_STEP2_CLICK_BOX,0,0)
+    checkCount = 0
+    while not isCombatStart() and checkCount < 20:
+        time.sleep(0.5)
+        checkCount += 1
+    if checkCount >= 20:
+        return False
+    time.sleep(0.5)
+    return True
     
 #计划模式
 def planMode():
@@ -607,34 +612,46 @@ def planMode():
     mouseClick(PLAN_POINT3_CLICK_BOX,0.25,0.3)
     mouseClick(PLAN_START_CLICK_BOX,0,0)
 
-#在终点点击结束回合
-def endAction():
-    print("ACTION: 结束回合")
-    mouseClick(ACTION_END_CLICK_BOX,2,2)
-
 #战役结算
 def endCombat():
     print("ACTION: 战役结算")
-    while not is0_2():
-        mouseClick(COMBAT_END_CLICK_BOX,0.5,0.6)
+    checkCount = 0
+    while not is0_2() and checkCount < 100:
+        mouseClick(COMBAT_END_CLICK_BOX,0.2,0.3)
+        checkCount += 1
+    if checkCount >= 100:
+        return False
+    return True
     
-#强化（拆解）
-def gotoPowerup():  
+#拆解
+def gotoRetire():  
     print("ACTION: 拆解人形") 
-    mouseClick(GOTO_POWERUP_CLICK_BOX,4,5)
+    mouseClick(GOTO_POWERUP_CLICK_BOX,5,6)
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
-    mouseClick(CHOOSE_CHARACTER_CLICK_BOX,1,2)
+    mouseClick(CHOOSE_RETIRE_CHARACTER_CLICK_BOX,1,2)
     for i in range(7):
-        mouseClick(CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
-        mouseClick(CHARACTER_2_CLICK_BOX,0.2,0.3)
-        mouseClick(CHARACTER_3_CLICK_BOX,0.2,0.3)
-        mouseClick(CHARACTER_4_CLICK_BOX,0.2,0.3)
-        mouseClick(CHARACTER_5_CLICK_BOX,0.2,0.3)
-        mouseClick(CHARACTER_6_CLICK_BOX,0.2,0.3)
+        mouseClick(RETIRE_CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
+        mouseClick(RETIRE_CHARACTER_2_CLICK_BOX,0.2,0.3)
+        mouseClick(RETIRE_CHARACTER_3_CLICK_BOX,0.2,0.3)
+        mouseClick(RETIRE_CHARACTER_4_CLICK_BOX,0.2,0.3)
+        mouseClick(RETIRE_CHARACTER_5_CLICK_BOX,0.2,0.3)
+        mouseClick(RETIRE_CHARACTER_6_CLICK_BOX,0.2,0.3)
         mouseDrag(RETIRE_DRAG_BOX,0,-1,1,325,0.005,1)#往上拖一行
-    mouseClick(CHOOSE_FINISH_CLICK_BOX,1,2)
+    mouseClick(CHOOSE_FINISH_RETIRE_CLICK_BOX,1,2)
     mouseClick(RETIRE_CLICK_BOX,1,2)
     mouseClick(CONFIRM_RETIRE_CLICK_BOX,3,4)    
+
+#强化
+def gotoPowerup(): 
+    print("ACTION: 强化人形") 
+    mouseClick(GOTO_POWERUP_CLICK_BOX,5,6)
+    mouseClick(CHOOSE_POWERUP_CHARACTER_CLICK_BOX,1,2)
+    mouseClick(FIRST_CHARACTER_CLICK_BOX,1,2)
+    mouseClick(CHOOSE_EXP_CHARACTER_CLICK_BOX,2,3)
+    mouseClick(AUTO_CHOOSE_CLICK_BOX,1,2)
+    mouseClick(CHOOSE_CONFIRM_CLICK_BOX,1,2)
+    mouseClick(POWERUP_CLICK_BOX,3,4)
+    mouseClick(POWERUP_FINISH_CLICK_BOX,3,4)
 
 #跳转至主菜单(回主菜单收后勤)
 def backToMainMenu():
@@ -688,7 +705,7 @@ if __name__ == "__main__":
 
     while True:
         if isInMap():
-            print("STATE：0-2地图")
+            print("STATE：已进入地图")
             failCount = 0
             if firstCombat:#战前准备
                 firstCombat = False
@@ -715,17 +732,23 @@ if __name__ == "__main__":
                 print("ERROR：补给机场队失败")
                 closeGame()
                 continue   
+            if not withdraw():#撤退机场队
+                print("ERROR：机场队撤退失败")
+                closeGame()
+                continue
             planMode()
             checkCount = 0
-            while (not isPlanFinished()) and checkCount < 300:#计划开始后300s还没打完，一般是出问题了（比方说卡了一下导致流程漏了）
+            while (not isCombatFinished()) and checkCount < 300:#计划开始后300s还没打完，一般是出问题了（比方说卡了一下导致流程漏了）
                 checkCount += 1
                 time.sleep(1)
             if checkCount >= 300:
                 print("STATE：战斗超时！")
                 closeGame()
                 continue
-            endAction()
-            endCombat()
+            if not endCombat():#结束战役
+                print("ERROR：战役结束失败")
+                closeGame()
+                continue
             combatCount += 1
             currentTime = datetime.datetime.now()
             runtime = currentTime - startTime
@@ -733,6 +756,7 @@ if __name__ == "__main__":
         elif isGotoPowerup():
             print("STATE： 提醒强化界面")
             gotoPowerup()
+            #gotoRetire()
             backToMainMenu()
             failCount = 0
         elif is0_2():
