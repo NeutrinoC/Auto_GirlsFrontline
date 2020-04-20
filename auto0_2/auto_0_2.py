@@ -755,8 +755,8 @@ if __name__ == "__main__":
             print('> 已运行：',runtime,'  0-2轮次：',combatCount)                
         elif isGotoPowerup():
             print("STATE： 提醒强化界面")
-            gotoPowerup()
-            #gotoRetire()
+            #gotoPowerup()
+            gotoRetire()
             backToMainMenu()
             failCount = 0
         elif is0_2():
