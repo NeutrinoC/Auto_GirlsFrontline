@@ -27,7 +27,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.58]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域         
 CHOOSE_0_2_IMAGE_BOX = [0.50,0.43,0.60,0.50]#0-2界面判断区域                          
@@ -89,7 +89,7 @@ RESTART_STEP1_CLICK_BOX = [0.22,0.09,0.26,0.14]#点击终止作战
 RESTART_STEP2_CLICK_BOX = [0.34,0.61,0.43,0.63]#点击重新作战
 
 #16哥修复
-M16_REPAIR_INTERVAL = 6   #16哥隔多少轮修一次
+M16_REPAIR_INTERVAL = 8   #16哥隔多少轮修一次
 REPAIR_STEP1_CLICK_BOX = [0.70,0.30,0.76,0.50]#点击m16        
 REPAIR_STEP2_CLICK_BOX = [0.69,0.65,0.75,0.69]#确定修复          
 REPAIR_STEP3_CLICK_BOX = [0.85,0.75,0.91,0.79]#退出2队界面         

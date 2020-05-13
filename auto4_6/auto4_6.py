@@ -24,7 +24,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径   
-MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.58]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域  
 CHOOSE_4_6_IMAGE_BOX = [0.50,0.62,0.60,0.69]#4-6菜单界面判断区域     
@@ -374,10 +374,10 @@ def setTeam():
     time.sleep(0.2)
     mouseClick(TEAM_SET_CLICK_BOX,0,0)
     checkCount = 0
-    while not isMap() and checkCount < 20:
-        time.sleep(0.4)
+    while not isMap() and checkCount < 40:
+        time.sleep(0.2)
         checkCount += 1
-    if checkCount >= 20:
+    if checkCount >= 40:
         return False
     time.sleep(0.2)
     mouseClick(AIRPORT_CLICK_BOX,0,0)
@@ -390,10 +390,10 @@ def setTeam():
     time.sleep(0.2)
     mouseClick(TEAM_SET_CLICK_BOX,0,0)
     checkCount = 0
-    while not isMap() and checkCount < 20:
-        time.sleep(0.4)
+    while not isMap() and checkCount < 40:
+        time.sleep(0.2)
         checkCount += 1
-    if checkCount >= 20:
+    if checkCount >= 40:
         return False
     time.sleep(0.2)
     return True
@@ -454,15 +454,15 @@ def eventDealer():
 
 #
 def confirmEvent():
-    mouseClick(CONTINUE_CLICK_BOX,0.8,1)
+    mouseClick(CONTINUE_CLICK_BOX,0.6,0.8)
 
 def withdraw():
     print("ACTION: 遇敌撤退")
     time.sleep(3)
     while not isRestart():
-        mouseClick(PAUSE_CLICK_BOX,0.5,0.6)
-        mouseClick(WITHDRAW_CLICK_BOX,0.5,0.6)
-    time.sleep(0.5)
+        mouseClick(PAUSE_CLICK_BOX,0.3,0.4)
+        mouseClick(WITHDRAW_CLICK_BOX,0.3,0.4)
+    time.sleep(0.4)
 
 #重启作战
 def restartCombat():
@@ -470,10 +470,10 @@ def restartCombat():
     mouseClick(RESTART_STEP1_CLICK_BOX,1,1.5)
     mouseClick(RESTART_STEP2_CLICK_BOX,0,0)
     checkCount = 0
-    while not isMap() and checkCount < 30:
-        time.sleep(0.5)
+    while not isMap() and checkCount < 50:
+        time.sleep(0.2)
         checkCount += 1
-    if checkCount >= 30:
+    if checkCount >= 50:
         return False
     time.sleep(0.5)
     return True    
@@ -509,6 +509,7 @@ if __name__ == "__main__":
     startTime = datetime.datetime.now()
     firstCombat = True
     failCount = 0
+    stepCount = 0
 
     while True:
         if isMap():
@@ -535,18 +536,21 @@ if __name__ == "__main__":
                 continue
             if action_1():
                 continue
+            stepCount += 1
             action_2()
             if action_3():
                 continue
+            stepCount += 1
             if action_4():
                 continue
+            stepCount += 1
             if not restartCombat():
                 print("ERROR：重启作战失败")
                 closeGame()
                 continue                
             currentTime = datetime.datetime.now()
             runtime = currentTime - startTime
-            print('> 已运行：',runtime)       
+            print('> 已运行：',runtime,'  踩点数: ',stepCount)       
         elif isRestart():
             print("STATE：状态未知，可直接重启") 
             restartCombat() 

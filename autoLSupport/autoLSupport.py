@@ -25,7 +25,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.58]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                       
 DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.35]#模拟器桌面判断区域         
 
@@ -175,8 +175,10 @@ def showWindow():
         print("未找到窗口界面,程序自动退出！")
         exit(0)
     elif hwnd != 0:
+        print("显示少女前线 - MuMu模拟器！")
         win32gui.ShowWindow(hwnd,win32con.SW_SHOW)
     elif hwnd_desktop != 0:
+        print("显示MuMu模拟器！")
         win32gui.ShowWindow(hwnd_desktop,win32con.SW_SHOW)
     time.sleep(3)
 
