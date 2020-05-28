@@ -24,7 +24,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径   
-MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.60]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域  
 CHOOSE_4_6_IMAGE_BOX = [0.50,0.62,0.60,0.69]#4-6菜单界面判断区域     

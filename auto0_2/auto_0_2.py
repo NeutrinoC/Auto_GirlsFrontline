@@ -27,7 +27,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.60]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域         
 CHOOSE_0_2_IMAGE_BOX = [0.50,0.43,0.60,0.50]#0-2界面判断区域                          
@@ -48,7 +48,7 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.63,0.90,0.70]#回到作战界面判断区域
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
-COMBAT_CLICK_BOX = [0.62,0.52,0.76,0.60]#在主菜单点击战斗
+COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗
 
 #从作战选择界面进入0-2界面
 COMBAT_MISSION_CLICK_BOX = [0.05,0.20,0.10,0.24]#点击作战任务
@@ -629,7 +629,7 @@ def gotoRetire():
     mouseClick(GOTO_POWERUP_CLICK_BOX,5,6)
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_RETIRE_CHARACTER_CLICK_BOX,1,2)
-    for i in range(7):
+    for i in range(10):
         mouseClick(RETIRE_CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
         mouseClick(RETIRE_CHARACTER_2_CLICK_BOX,0.2,0.3)
         mouseClick(RETIRE_CHARACTER_3_CLICK_BOX,0.2,0.3)

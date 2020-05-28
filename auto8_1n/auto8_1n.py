@@ -23,7 +23,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.59,0.75,0.66]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.52,0.75,0.60]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域          
 CHOOSE_8_1N_IMAGE_BOX = [0.50,0.32,0.60,0.40]#8-1n菜单界面判断区域                        
@@ -604,7 +604,7 @@ def gotoPowerup():
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_EQUIPMENT_CLICK_BOX,1,2)
     mouseClick(CHOOSE_ORDER_CLICK_BOX,1,2)
-    for i in range(9):
+    for i in range(15):
         mouseClick(EQUIPMENT_1_CLICK_BOX,0.25,0.3)#选六个
         mouseClick(EQUIPMENT_2_CLICK_BOX,0.25,0.3)
         mouseClick(EQUIPMENT_3_CLICK_BOX,0.25,0.3)
