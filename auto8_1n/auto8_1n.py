@@ -48,7 +48,7 @@ BACK_TO_COMBAT_CLICK_BOX = [0.75,0.63,0.90,0.70]#主菜单回到战斗
 BACK_TO_COMBAT_AFTER_CLICK_BOX = [0.49,0.10,0.51,0.15]#战斗结束后随机点击完成结算
 
 #从作战选择界面进入8-1n界面
-COMBAT_MISSION_CLICK_BOX = [0.05,0.20,0.10,0.24]#点击作战任务
+COMBAT_MISSION_CLICK_BOX = [0.05,0.26,0.10,0.30]#点击作战任务
 CHAPTER_DRAG_BOX = [0.16,0.75,0.22,0.80]#向上拖章节选择条
 CHAPTER_8_CLICK_BOX = [0.15,0.17,0.20,0.18]#选择第8章
 NIGHT_CLICK_BOX = [0.92,0.24,0.97,0.28]#选择夜战
@@ -422,7 +422,7 @@ def combatPrepare():
     print("STATE: 战前整备")
     mouseClick(MAP_SCALE_BOX,0.5,0.6)
     scaleMap(MAP_SCALE_BOX,1,10)
-    mouseDrag(MAP_DRAG_BOX,1,1,1,200,0.001,1)
+    mouseDrag(MAP_DRAG_BOX,1,1,1,240,0.001,1)
     setTeam()
     startCombat()
     mouseClick(AIRPORT_1_CLICK_BOX,1,2)
