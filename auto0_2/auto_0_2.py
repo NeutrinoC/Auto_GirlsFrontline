@@ -101,12 +101,13 @@ START_COMBAT_CLICK_BOX = [0.85,0.82,0.92,0.86]#点击开始作战
 SUPPLY_STEP1_CLICK_BOX = [0.85,0.68,0.94,0.70]#点击补给
 SUPPLY_STEP2_CLICK_BOX = [0.20,0.20,0.30,0.25]#取消选中
 
-#计划模式
-PLAN_MODE_CLICK_BOX = [0.04,0.77,0.10,0.79]#点击计划模式
-PLAN_POINT1_CLICK_BOX = [0.45,0.67,0.47,0.69]#点击计划点1 
-PLAN_POINT2_CLICK_BOX = [0.45,0.53,0.47,0.54]#点击计划点2
-PLAN_POINT3_CLICK_BOX = [0.66,0.63,0.67,0.64]#点击计划点3
-PLAN_START_CLICK_BOX = [0.88,0.82,0.98,0.85]#点击执行计划
+# 计划模式
+PLAN_MODE_CLICK_BOX = [0.04, 0.77, 0.10, 0.79]  # 点击计划模式
+PLAN_POINT1_CLICK_BOX = [0.45, 0.67, 0.47, 0.69]  # 点击计划点1
+PLAN_POINT2_CLICK_BOX = [0.5, 0.57, 0.522, 0.59]  # 点击计划点2
+PLAN_POINT3_CLICK_BOX = [0.45, 0.53, 0.47, 0.54]  # 点击计划点3
+PLAN_POINT4_CLICK_BOX = [0.66, 0.63, 0.67, 0.64]  # 点击计划点4
+PLAN_START_CLICK_BOX = [0.88, 0.82, 0.98, 0.85]  # 点击执行计划
 
 #战役结算
 COMBAT_END_CLICK_BOX = [0.48,0.08,0.52,0.10]#战役结算     
@@ -602,15 +603,17 @@ def withdraw():
     time.sleep(0.5)
     return True
     
-#计划模式
+# 计划模式
 def planMode():
     print("ACTION: 计划模式")
-    mouseClick(COMMAND_CLICK_BOX,0.8,1)
-    mouseClick(PLAN_MODE_CLICK_BOX,1,2)
-    mouseClick(PLAN_POINT1_CLICK_BOX,0.25,0.3)
-    mouseClick(PLAN_POINT2_CLICK_BOX,0.25,0.3)
-    mouseClick(PLAN_POINT3_CLICK_BOX,0.25,0.3)
-    mouseClick(PLAN_START_CLICK_BOX,0,0)
+    mouseClick(COMMAND_CLICK_BOX, 0.8, 1)
+    mouseClick(PLAN_MODE_CLICK_BOX, 1, 2)
+    mouseClick(PLAN_POINT1_CLICK_BOX, 0.25, 0.3)
+    mouseClick(PLAN_POINT2_CLICK_BOX, 0.25, 0.3)
+    mouseClick(PLAN_POINT1_CLICK_BOX, 0.25, 0.3)
+    mouseClick(PLAN_POINT3_CLICK_BOX, 0.25, 0.3)
+    mouseClick(PLAN_POINT4_CLICK_BOX, 0.25, 0.3)
+    mouseClick(PLAN_START_CLICK_BOX, 0, 0)
 
 #战役结算
 def endCombat():
