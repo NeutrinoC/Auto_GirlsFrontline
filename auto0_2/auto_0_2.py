@@ -48,7 +48,8 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.63,0.90,0.70]#回到作战界面判断区域
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
-COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗
+COMBAT_CLICK_BOX = [0.65,0.58,0.75,0.64]#在主菜单点击战斗（无作战进行中情况）
+COMBAT_ON_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（作战中断情况）
 
 #从作战选择界面进入0-2界面
 COMBAT_MISSION_CLICK_BOX = [0.05,0.18,0.10,0.24]#点击作战任务
@@ -398,10 +399,15 @@ def isTeamInfo():
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
     return imageCompare(initImage,capImage)
 
-#从主菜单进入作战菜单
+#从主菜单进入作战菜单（无战斗进行中情况）
 def mainMenuToCombatMenu():
     print("ACTION: 前往作战菜单")
     mouseClick(COMBAT_CLICK_BOX,5,6)  
+
+#从主菜单进入作战菜单（战斗中断情况）
+def mainMenuToCombatMenu_combatOn():
+    print("ACTION: 前往作战菜单-战斗中断")
+    mouseClick(COMBAT_ON_CLICK_BOX,5,6)  
     
 #从作战菜单进入0-2界面
 def combatMenuTo0_2():
@@ -774,7 +780,7 @@ if __name__ == "__main__":
         elif isReturnCombat():
             print("STATE： 返回作战界面")
             failCount = 0
-            mainMenuToCombatMenu()
+            mainMenuToCombatMenu_combatOn()
             combatMenuTo0_2()
             end0_2()
             firstCombat = True
