@@ -43,9 +43,8 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.63,0.90,0.70]#回到作战界面判断区域
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
-COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗
-BACK_TO_COMBAT_CLICK_BOX = [0.75,0.63,0.90,0.70]#主菜单回到战斗
-BACK_TO_COMBAT_AFTER_CLICK_BOX = [0.49,0.10,0.51,0.15]#战斗结束后随机点击完成结算
+COMBAT_CLICK_BOX = [0.65,0.58,0.75,0.64]#在主菜单点击战斗（无作战进行中情况）
+COMBAT_ON_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（作战中断情况）
 
 #从作战选择界面进入8-1n界面
 COMBAT_MISSION_CLICK_BOX = [0.05,0.18,0.10,0.24]#点击作战任务
@@ -389,12 +388,10 @@ def mainMenuToCombatMenu():
     print("ACTION: 前往作战菜单")
     mouseClick(COMBAT_CLICK_BOX,5,6)  
 
-#从主菜单回到作战
-def mainMenuBackToCombat():
-    print("ACTION: 回到作战")
-    mouseClick(BACK_TO_COMBAT_CLICK_BOX,60,60)  
-    for i in range(8):
-        mouseClick(BACK_TO_COMBAT_AFTER_CLICK_BOX,0.6,0.7)    
+#从主菜单进入作战菜单（战斗中断情况）
+def mainMenuToCombatMenu_combatOn():
+    print("ACTION: 前往作战菜单-战斗中断")
+    mouseClick(COMBAT_ON_CLICK_BOX,5,6)  
 
 #从作战菜单进入8-1n界面
 def combatMenuTo8_1n():
@@ -737,7 +734,7 @@ if __name__ == "__main__":
         elif isReturnCombat():
             print("STATE： 返回作战界面")
             failCount = 0
-            mainMenuToCombatMenu()
+            mainMenuToCombatMenu_combatOn()
             combatMenuTo8_1n()
             end8_1n()
             firstCombat = True
