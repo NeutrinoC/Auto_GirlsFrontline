@@ -71,7 +71,7 @@ CHANGE_FORCE_STEP1_CLICK_BOX = [0.17,0.74,0.26,0.77]#点击梯队编成
 CHANGE_FORCE_STEP2_CLICK_BOX = [0.15,0.35,0.25,0.55]#点击Zas
 CHANGE_FORCE_STEP3_CLICK_BOX = [0.88,0.20,0.94,0.26]#点击排序方式
 CHANGE_FORCE_STEP4_CLICK_BOX = [0.72,0.63,0.78,0.68]#点击受损程度
-CHANGE_FORCE_UPORDER_CLICK_BOX = [0.88,0.52,0.94,0.56]#点击升序
+#CHANGE_FORCE_UPORDER_CLICK_BOX = [0.88,0.52,0.94,0.56]#点击升序
 CHANGE_FORCE_STEP5_1_CLICK_BOX = [0.20,0.25,0.25,0.40]#选择第一只
 CHANGE_FORCE_STEP5_2_CLICK_BOX = [0.32,0.25,0.38,0.40]#选择第二只
 CHANGE_FORCE_STEP6_CLICK_BOX = [0.08,0.10,0.10,0.14]#点击返回
@@ -467,7 +467,7 @@ def changeForce(teamFlag):
     time.sleep(0.4)
     mouseClick(CHANGE_FORCE_STEP3_CLICK_BOX,0.5,1)#点击排序方式
     mouseClick(CHANGE_FORCE_STEP4_CLICK_BOX,1,1.5)#点击受损程度
-    mouseClick(CHANGE_FORCE_UPORDER_CLICK_BOX,1,1.5)#点击倒序
+    #mouseClick(CHANGE_FORCE_UPORDER_CLICK_BOX,1,1.5)#点击倒序
     #zas轮换，第一轮点第二个，第二轮点第一个，第三轮点第二个。。。以此类推
     if teamFlag:
         mouseClick(CHANGE_FORCE_STEP5_2_CLICK_BOX,0,0)#点击第一只
