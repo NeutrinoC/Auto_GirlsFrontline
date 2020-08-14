@@ -76,7 +76,8 @@ COMMAND_CLICK_BOX = [0.50,0.82,0.52,0.85]#指挥部
 #更换打手
 CHANGE_FORCE_STEP1_CLICK_BOX = [0.17,0.74,0.26,0.77]#点击梯队编成
 CHANGE_FORCE_STEP2_CLICK_BOX = [0.15,0.35,0.25,0.55]#点击1队打手
-CHANGE_FORCE_STEP3_CLICK_BOX = [0.20,0.25,0.25,0.40]#更换打手
+CHANGE_FORCE_STEP3_1_CLICK_BOX = [0.20,0.25,0.25,0.40]#更换打手1
+CHANGE_FORCE_STEP3_2_CLICK_BOX = [0.32,0.25,0.38,0.40]#更换打手2
 CHANGE_FORCE_STEP4_CLICK_BOX = [0.08,0.10,0.10,0.14]#点击返回
 
 #放置队伍
@@ -446,6 +447,10 @@ def adjustMap(tiny = False):
 def combatPrepare():
     print("STATE: 战前整备")
     adjustMap()
+    #
+    changeForce(False)
+    #
+    adjustMap(True)
     if not setTeam():
         return False
     if not startCombat():
@@ -462,7 +467,7 @@ def restartCombat():
     mouseClick(RESTART_STEP2_CLICK_BOX,8,8)
 
 #更换打手
-def changeForce():
+def changeForce(teamFlag):
     print("ACTION: 更换打手")
     mouseClick(AIRPORT_CLICK_BOX,0,0)#点击机场
     checkCount = 0
@@ -488,7 +493,10 @@ def changeForce():
     if checkCount >= 20:
         return False
     time.sleep(0.4)
-    mouseClick(CHANGE_FORCE_STEP3_CLICK_BOX,0,0)#更换打手
+    if teamFlag:
+        mouseClick(CHANGE_FORCE_STEP3_2_CLICK_BOX,0,0)#更换打手
+    else:
+        mouseClick(CHANGE_FORCE_STEP3_1_CLICK_BOX,0,0)#更换打手
     checkCount = 0
     while not isFormTeam() and checkCount < 20:
         time.sleep(0.4)
@@ -709,6 +717,7 @@ if __name__ == "__main__":
     combatCount = 0
     firstCombat = True
     failCount = 0
+    teamFlag = True#Flag为True时选第二只，为False时选第一只
 
     while True:
         if isInMap():
@@ -716,12 +725,13 @@ if __name__ == "__main__":
             failCount = 0
             if firstCombat:#战前准备
                 firstCombat = False
+                teamFlag = True
                 if not combatPrepare():
                     closeGame()
                 continue
             else:
                 adjustMap(True)
-            if not changeForce():#更换打手
+            if not changeForce(teamFlag):#更换打手
                 print("ERROR：更换打手失败")
                 closeGame()
                 continue
@@ -757,6 +767,7 @@ if __name__ == "__main__":
                 closeGame()
                 continue
             combatCount += 1
+            teamFlag = (not teamFlag)
             currentTime = datetime.datetime.now()
             runtime = currentTime - startTime
             print('> 已运行：',runtime,'  0-2轮次：',combatCount)                

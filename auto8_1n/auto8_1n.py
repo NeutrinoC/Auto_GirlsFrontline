@@ -72,7 +72,8 @@ CHANGE_FORCE_STEP2_CLICK_BOX = [0.15,0.35,0.25,0.55]#点击Zas
 CHANGE_FORCE_STEP3_CLICK_BOX = [0.88,0.20,0.94,0.26]#点击排序方式
 CHANGE_FORCE_STEP4_CLICK_BOX = [0.72,0.63,0.78,0.68]#点击受损程度
 CHANGE_FORCE_UPORDER_CLICK_BOX = [0.88,0.52,0.94,0.56]#点击升序
-CHANGE_FORCE_STEP5_CLICK_BOX = [0.20,0.25,0.25,0.40]#选择Zas
+CHANGE_FORCE_STEP5_1_CLICK_BOX = [0.20,0.25,0.25,0.40]#选择第一只
+CHANGE_FORCE_STEP5_2_CLICK_BOX = [0.32,0.25,0.38,0.40]#选择第二只
 CHANGE_FORCE_STEP6_CLICK_BOX = [0.08,0.10,0.10,0.14]#点击返回
 
 #放置队伍
@@ -421,6 +422,10 @@ def combatPrepare():
     mouseClick(MAP_SCALE_BOX,0.5,0.6)
     scaleMap(MAP_SCALE_BOX,1,10)
     mouseDrag(MAP_DRAG_BOX,1,1,1,240,0.001,1)
+    #保证了战损排序第一的zas在第一队
+    changeForce(False)
+    #补给一队
+    mouseDrag(MAP_DRAG_BOX,1,1,1,240,0.001,1)
     setTeam()
     startCombat()
     mouseClick(AIRPORT_1_CLICK_BOX,1,2)
@@ -430,9 +435,11 @@ def combatPrepare():
     mouseClick(WITHDRAW_STEP1_CLICK_BOX,2,3)
     mouseClick(WITHDRAW_STEP2_CLICK_BOX,2,3)
     restartCombat()
+    return True
+
 
 #更换打手
-def changeForce():
+def changeForce(teamFlag):
     print("ACTION: 更换打手")
     mouseClick(AIRPORT_1_CLICK_BOX,0,0)#点击下方机场
     checkCount = 0
@@ -460,8 +467,12 @@ def changeForce():
     time.sleep(0.4)
     mouseClick(CHANGE_FORCE_STEP3_CLICK_BOX,0.5,1)#点击排序方式
     mouseClick(CHANGE_FORCE_STEP4_CLICK_BOX,1,1.5)#点击受损程度
-    mouseClick(CHANGE_FORCE_UPORDER_CLICK_BOX,1,1.5)#点击受损程度
-    mouseClick(CHANGE_FORCE_STEP5_CLICK_BOX,0,0)#点击二号打手
+    mouseClick(CHANGE_FORCE_UPORDER_CLICK_BOX,1,1.5)#点击倒序
+    #zas轮换，第一轮点第二个，第二轮点第一个，第三轮点第二个。。。以此类推
+    if teamFlag:
+        mouseClick(CHANGE_FORCE_STEP5_2_CLICK_BOX,0,0)#点击第一只
+    else:
+        mouseClick(CHANGE_FORCE_STEP5_1_CLICK_BOX,0,0)#点击第二只
     checkCount = 0
     while not isFormTeam() and checkCount < 20:
         wait(0.3,0.4)
@@ -670,6 +681,7 @@ if __name__ == "__main__":
     firstCombat = True#启动时会给一队单独补给并重开
     failCount = 0
     combatPause = False
+    teamFlag = True#Flag为True时选第二只，为False时选第一只
 
     while True:
         if isInMap():
@@ -677,9 +689,10 @@ if __name__ == "__main__":
             failCount = 0
             if firstCombat:
                 firstCombat = False
-                combatPrepare()
+                if not combatPrepare():
+                    closeGame()
                 continue
-            if not changeForce():
+            if not changeForce(teamFlag):
                 print("ERROR：更换打手失败")
                 closeGame()
                 continue                
@@ -713,6 +726,7 @@ if __name__ == "__main__":
                 closeGame()
                 continue
             combatCount += 1
+            teamFlag = (not teamFlag)
             currentTime = datetime.datetime.now()
             runtime = currentTime - startTime
             print('> 已运行：',runtime,'  8-1n轮次：',combatCount)                
@@ -753,6 +767,7 @@ if __name__ == "__main__":
             firstCombat = True
             failCount = 0
             startGame()
+            teamFlag = True
             continue
         else:#不知道在哪
             print("ERROR： 当前状态未知!")
