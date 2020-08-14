@@ -15,6 +15,7 @@
 4. auto8_1n: 自动8-1n炸狗
 5. auto12_4e_1:自动12-4e捞核心（未经测试）
 >至于打捞，太精污了，不想做
+![image](https://github.com/NeutrinoC/Auto_GirlsFrontline/blob/master/%E7%A8%8B%E5%BA%8F%E8%AF%84%E4%BB%B7.jpg)
 
 
 # 使用说明
