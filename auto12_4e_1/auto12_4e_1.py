@@ -27,7 +27,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
-MAIN_MENU_IMAGE_BOX = [0.65,0.58,0.75,0.63]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.65,0.50,0.75,0.58]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域         
 CHOOSE_12_4e_IMAGE_BOX = [0.52,0.71,0.60,0.74]#12-4e界面判断区域                          
@@ -47,14 +47,15 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.65,0.90,0.68]#回到作战界面判断区域
 #=================点击拖动区域=================#
 
 #从主菜单进入作战选择界面
-COMBAT_CLICK_BOX = [0.65,0.58,0.75,0.63]#在主菜单点击战斗（无作战进行中情况）
+COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（无作战进行中情况）
 COMBAT_BREAK_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（作战中断情况）
 
 #从作战选择界面进入12-4e界面
-COMBAT_MISSION_CLICK_BOX = [0.05,0.18,0.10,0.22]#点击作战任务
+COMBAT_MISSION_CLICK_BOX = [0.05,0.28,0.10,0.32]#点击作战任务
 CHAPTER_DRAG_BOX = [0.16,0.60,0.20,0.65]#向上拖章节选择条
 CHAPTER_12_CLICK_BOX = [0.16,0.52,0.20,0.57]#选择第12章
 EMERGENCY_CLICK_BOX = [0.84,0.24,0.87,0.28]#选择紧急难度
+EPISODE_DRAG_BOX = [0.40,0.35,0.80,0.40]#向下拖小节选择条
 
 #开始/终止12-4e
 EPISODE_4_CLICK_BOX = [0.50,0.70,0.60,0.75]#选择第4节
@@ -75,7 +76,7 @@ TEAM_SHIFT_CLICK_BOX = [0.42,0.20,0.48,0.24]#切换成普通梯队
 TEAM_SET_CLICK_BOX = [0.85,0.75,0.92,0.78]#放置梯队
 
 #扛伤位（第五个）修复
-REPAIR_INTERVAL = 3#隔多少轮修一次
+REPAIR_INTERVAL = 100#隔多少轮修一次
 REPAIR_STEP1_CLICK_BOX = [0.70,0.30,0.76,0.50]#点击五号位        
 REPAIR_STEP2_CLICK_BOX = [0.69,0.65,0.75,0.69]#确定修复          
 REPAIR_STEP3_CLICK_BOX = [0.85,0.75,0.91,0.79]#退出2队界面         
@@ -398,6 +399,7 @@ def combatMenuTo12_4e():
     mouseDrag(CHAPTER_DRAG_BOX,0,-1,3,400,0.001,1)
     mouseClick(CHAPTER_12_CLICK_BOX,1,2)
     mouseClick(EMERGENCY_CLICK_BOX,1,2)
+    mouseDrag(EPISODE_DRAG_BOX,0,1,1,300,0.001,1)
 
 #开始12-4e
 def start12_4e():
@@ -536,7 +538,7 @@ def gotoRetire():
     mouseClick(GOTO_POWERUP_CLICK_BOX,5,6)
     mouseClick(CHOOSE_RETIRE_CLICK_BOX,1,2)
     mouseClick(CHOOSE_RETIRE_CHARACTER_CLICK_BOX,1,2)
-    for i in range(10):
+    for i in range(8):
         mouseClick(RETIRE_CHARACTER_1_CLICK_BOX,0.2,0.3)#选六个
         mouseClick(RETIRE_CHARACTER_2_CLICK_BOX,0.2,0.3)
         mouseClick(RETIRE_CHARACTER_3_CLICK_BOX,0.2,0.3)
