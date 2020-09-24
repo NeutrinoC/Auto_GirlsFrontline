@@ -51,7 +51,7 @@ COMBAT_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（无作战进
 COMBAT_BREAK_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（作战中断情况）
 
 #从作战选择界面进入12-4e界面
-COMBAT_MISSION_CLICK_BOX = [0.05,0.28,0.10,0.32]#点击作战任务
+COMBAT_MISSION_CLICK_BOX = [0.05,0.18,0.10,0.22]#点击作战任务
 CHAPTER_DRAG_BOX = [0.16,0.60,0.20,0.65]#向上拖章节选择条
 CHAPTER_12_CLICK_BOX = [0.16,0.52,0.20,0.57]#选择第12章
 EMERGENCY_CLICK_BOX = [0.84,0.24,0.87,0.28]#选择紧急难度
@@ -76,7 +76,7 @@ TEAM_SHIFT_CLICK_BOX = [0.42,0.20,0.48,0.24]#切换成普通梯队
 TEAM_SET_CLICK_BOX = [0.85,0.75,0.92,0.78]#放置梯队
 
 #扛伤位（第五个）修复
-REPAIR_INTERVAL = 100#隔多少轮修一次
+REPAIR_INTERVAL = 40#隔多少轮修一次
 REPAIR_STEP1_CLICK_BOX = [0.70,0.30,0.76,0.50]#点击五号位        
 REPAIR_STEP2_CLICK_BOX = [0.69,0.65,0.75,0.69]#确定修复          
 REPAIR_STEP3_CLICK_BOX = [0.85,0.75,0.91,0.79]#退出2队界面         
