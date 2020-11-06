@@ -25,6 +25,7 @@ from skimage.metrics import structural_similarity
 
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
+FIRST_LOGIN_IMAGE_BOX = [0.60,0.58,0.75,0.65]#每日第一次登录时那个确认窗口判断区域
 MAIN_MENU_IMAGE_BOX = [0.65,0.50,0.75,0.58]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                       
 DESKTOP_IMAGE_BOX = [0.10,0.20,0.22,0.35]#模拟器桌面判断区域         
@@ -43,7 +44,9 @@ START_GAME_STEP3_CLICK_BOX = [0.50,0.75,0.50,0.75]#点击开始
 #关闭游戏
 CLOSE_GAME_CLICK_BOX = [0.56,0.02,0.57,0.04]
 
-
+#每日第一次登录的确认
+CHECK_INFORMATION_CLICK_BOX = [0.26,0.61,0.27,0.63]#勾选今日不在弹出
+CONFIRM_INFORMATION_CLICK_BOX = [0.65,0.60,0.72,0.63]#点击确认
 #=============================================#
 #                                             #
 #                 基本功能函数                 #
@@ -210,6 +213,13 @@ def isMainMenu():
     capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
     return imageCompare(initImage,capImage)
     
+#判断是否是每日第一次登录的确认界面
+def isFirstLogin():
+    initImage = cv2.imread(IMAGE_PATH+"first_login.png")
+    capImage  = getImage(FIRST_LOGIN_IMAGE_BOX)
+    capImage  = cv2.cvtColor(np.asarray(capImage),cv2.COLOR_RGB2BGR)
+    return imageCompare(initImage,capImage)   
+
 #判断是否是委托完成界面
 def isLSupport():
     initImage = cv2.imread(IMAGE_PATH+"L_support.png")
@@ -243,7 +253,10 @@ def closeGame():
     print("ACTION: 关闭游戏")
     mouseClick(CLOSE_GAME_CLICK_BOX,5,5)
 
-
+#确认每日第一次登录的公告
+def confirmAnnouncement():
+    mouseClick(CHECK_INFORMATION_CLICK_BOX,2,2)
+    mouseClick(CONFIRM_INFORMATION_CLICK_BOX,2,2)
 #=============================================#
 #                                             #
 #                 本程序主函数                 #
@@ -271,6 +284,11 @@ if __name__ == "__main__":
             print(">>> ",datetime.datetime.now()," 模拟器桌面")
             failCount = 0
             startGame()
+            continue
+        elif isFirstLogin():
+            print("STATE：公告确认")
+            failCount = 0
+            confirmAnnouncement()
             continue
         else:#有的时候卡了或者是怎么样了，直接关了重启
             print(">>> ",datetime.datetime.now()," 当前状态未知")
