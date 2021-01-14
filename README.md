@@ -20,8 +20,6 @@
 >至于各种打捞，太懒了表示不想做，建议自己动手丰衣足食
 
 
-![image](https://github.com/NeutrinoC/Auto_GirlsFrontline/blob/master/%E7%A8%8B%E5%BA%8F%E8%AF%84%E4%BB%B7.jpg)
-
 
 ## 使用说明
 1. 此项目中的所有程序仅能在**电脑**端配合**模拟器**使用 
