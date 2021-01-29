@@ -17,8 +17,8 @@
 3. auto4_6: 自动4-6捡垃圾
 4. autoLSupport：自动收后勤
 5. auto0_2: 自动0-2拖尸（停止更新）
-6. auto13_4: 13-4拖尸（LukeZhang0）
-7. auto13_4e: 13-4e打捞防卫者（LukeZhang0）
+6. auto13_4: 13-4拖尸（@LukeZhang0）
+7. auto13_4e: 13-4e打捞防卫者（@LukeZhang0）
 
 >至于其他各种打捞，太懒了表示不想做，建议自己动手丰衣足食
 
