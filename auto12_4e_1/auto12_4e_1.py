@@ -28,7 +28,7 @@ from skimage.metrics import structural_similarity
 #=================截图比对区域=================#
 IMAGE_PATH = 'initial_IMG/'#读取截图的路径
 FIRST_LOGIN_IMAGE_BOX = [0.60,0.58,0.75,0.65]#每日第一次登录时那个确认窗口判断区域
-MAIN_MENU_IMAGE_BOX = [0.65,0.50,0.75,0.58]#主界面判断区域                       
+MAIN_MENU_IMAGE_BOX = [0.63,0.52,0.75,0.58]#主界面判断区域                       
 L_SUPPORT_IMAGE_BOX = [0.05,0.30,0.18,0.39]#后勤完成界面判断区域                
 COMBAT_MENU_IMAGE_BOX = [0.05,0.70,0.12,0.80]#战斗菜单界面判断区域         
 CHOOSE_12_4e_IMAGE_BOX = [0.52,0.71,0.60,0.74]#12-4e界面判断区域                          
@@ -50,8 +50,8 @@ RETURN_COMBAT_IMAGE_BOX = [0.75,0.65,0.90,0.68]#回到作战界面判断区域
 #从主菜单进入作战选择界面
 COMBAT_CLICK_BOX =  [0.65,0.50,0.75,0.58]#在主菜单点击战斗（无作战进行中情况）
 #[0.65,0.58,0.75,0.63]
-#[0.65,0.50,0.75,0.60]
-COMBAT_BREAK_CLICK_BOX = [0.65,0.50,0.75,0.58]#在主菜单点击战斗（作战中断情况）
+#[0.63,0.52,0.75,0.58]
+COMBAT_BREAK_CLICK_BOX = [0.63,0.52,0.75,0.58]#在主菜单点击战斗（作战中断情况）
 
 #从作战选择界面进入12-4e界面
 COMBAT_MISSION_CLICK_BOX =  [0.05,0.20,0.10,0.24]#点击作战任务
@@ -81,7 +81,7 @@ TEAM_SHIFT_CLICK_BOX = [0.42,0.20,0.48,0.24]#切换成普通梯队
 TEAM_SET_CLICK_BOX = [0.85,0.75,0.92,0.78]#放置梯队
 
 #扛伤位（第五个）修复
-REPAIR_INTERVAL =  20#隔多少轮修一次
+REPAIR_INTERVAL =  40#隔多少轮修一次
 REPAIR_STEP1_CLICK_BOX = [0.70,0.30,0.76,0.50]#点击五号位        
 REPAIR_STEP2_CLICK_BOX = [0.69,0.65,0.75,0.69]#确定修复          
 REPAIR_STEP3_CLICK_BOX = [0.85,0.75,0.91,0.79]#退出2队界面         
