@@ -4,6 +4,7 @@
 #                                             #
 #=============================================#
 
+import logging
 import cv2
 import time
 import random
@@ -11,6 +12,7 @@ import datetime
 import win32api
 import win32gui
 import win32con
+from os import path
 import numpy as np
 from PIL import ImageGrab
 from skimage.metrics import structural_similarity
